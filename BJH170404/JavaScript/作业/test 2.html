@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{margin:0; padding:0;}
+			#outer{ position:relative; width:320px; height:480px;  background: url("锅打灰太狼img/game_bg.jpg") 0 0 no-repeat; margin:50px auto 0;}
+			#score_box{ position:absolute; top:13px; left:65px; font-weight:bold; font-size:16px; color:white;}
+			#progress_bar{ position:absolute; top: 66px; left: 63px; width:180px; height:16px;background: url("锅打灰太狼img/progress.png") 0 0 no-repeat; }
+			#wolf_box img{ position:absolute; }
+			#menu { position:absolute; top:200px; left:0; width:320px; text-align:center;}
+			#start, #handle, #gameOver{ display:block; line-height:50px; font-size:30px; font-weight:bold; color:#F60; text-shadow:0 0 5px #FFFF00; text-decoration:none;}
+			#gameOver{ position:absolute; top:150px; left:0; width:320px; text-align:center; display:none;}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="score_box">0</div><!--这是分数-->
+		    <div id="progress_bar"></div><!--倒计时进度条-->
+		    <div id="wolf_box"></div><!-- 狼的容器 -->
+		    <div id="menu">
+		        <a href="javascript:;" id="start">开始</a>
+		        <a href="javascript:;" id="handle">游戏操作说明</a>
+		    </div>
+		    <div id="gameOver">game over!</div>
+		    <div id="again" style="display: none;">再来一次</div>
+		</div>
+	</body>
+	<script>
+		var scoreBox = document.getElementById('score_box');//积分器
+		var progressBar = document.getElementById('progress_bar');//进度条
+		var wolfBox = document.getElementById('wolf_box');//狼的容器
+		var menu = document.getElementById('menu');
+		var start = document.getElementById('start');//开始按钮
+		var gameOver = document.getElementById('gameOver');
+		var isPlay = false;//默认游戏未开始
+		var createWolfTimer = null;
+		//狼出现的位置
+		var posArr = [
+			{left:"98px",top:"115px"},
+			{left:"17px",top:"160px"},
+			{left:"15px",top:"220px"},
+			{left:"30px",top:"293px"},
+			{left:"122px",top:"273px"},
+			{left:"207px",top:"295px"},
+			{left:"200px",top:"211px"},
+			{left:"187px",top:"141px"},
+			{left:"100px",top:"185px"}
+		];
+		//随机函数
+		function randFn(min, max){
+			return parseInt(Math.random() * (max - min + 1) + min)
+		}
+		//进度条
+		function progressFn(){
+			if(isPlay){	//当控制开始游戏的布尔值为true时,执行以下代码
+				var percent = progressBar.offsetWidth;	//获取倒计时条原始宽度
+				var progressTimer = setInterval(function(){
+					percent--;	//宽度不断减少
+					if(percent <= 0){
+						clearInterval(progressTimer);	//清除定时器
+					}
+					progressBar.style.width = percent + "px";
+				},100)
+			}
+		}
+		//得分
+		function scoreFn(obj){
+			var num = parseInt(scoreBox.innerHTML);
+			if(obj.type == "x"){	//打到的是小灰灰的
+				num -= 10;			//减10分
+			}else{					//打到的是灰太狼
+				num +=10;			//加10分
+			}
+			scoreBox.innerHTML = num;
+		}
+		//创建狼
+		function createWolf(){
+			var wolf = document.createElement("img");
+			wolf.type = randFn(0,100) > 80 ? "x" : "h";	//随机狼的type类型是小灰灰还是灰太狼
+			wolf.index = 0;	//默认狼出现的第一张
+			wolf.src = "锅打灰太狼img/" + wolf.type + wolf.index + ".png";
+			var bol = true; //假设当前出现的是多只狼
+			var wolfs = wolfBox.children;	//获取到所有的狼
+			while(bol){
+				var randPos = randFn(0,posArr.length -1);	//随机出位置的下标
+				for(var i = 0;i < wolfs.length;i++){
+					if(wolfs[i].offsetLeft == parseInt(posArr[randPos])){
+						break;
+					}
+				}
+				if(i == wolfs.length){
+					//如果每只狼都确定位置了
+					bol = false;	//把布尔值设为false,while循环不再执行
+				}
+			}
+			wolf.style.left = posArr[randPos].left;
+			wolf.style.top = posArr[randPos].top;
+			wolfBox.appendChild(wolf);	//把新创建的狼添加到容器内
+			return wolf;	//把创建好的狼当做函数的返回值,方便在函数外使用
+		}
+
+
+		//开始游戏
+		function gameStart(){
+			isPlay = true;
+			progressFn();	//倒计时开始执行
+			createWolfTimer = setInterval(function(){
+				var wolf = createWolf();
+				//控制狼上升的定时器
+				wolf.appear = setInterval(function(){
+					wolf.index ++;
+					if(wolf.index >= 5){
+						clearInterval(wolf.appear);
+						wolfDown()
+					}
+					wolf.src = "锅打灰太狼img/" + wolf.type + wolf.index + ".png";
+				},30);
+				//控制狼向下的定时器
+				function wolfDown(){
+					wolf.disappear = setInterval(function(){
+							wolf.index --;
+							if(wolf.index <= 0){
+								clearInterval(wolf.disappear);
+								wolfBox.removeChild(wolf);
+						}
+						wolf.src = "锅打灰太狼img/" + wolf.type + wolf.index + ".png";
+					},100)
+				}
+			},1000)
+		}
+		gameStart()
+	</script>
+</html>

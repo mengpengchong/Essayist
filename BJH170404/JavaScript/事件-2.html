@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #box{
+            width:80px;
+            height:80px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
+<script>
+//    roll(document)
+//    function roll(obj){
+//        obj.addEventListener("mousewheel",scroll,false);
+//        //其他浏览器
+//        obj.addEventListener("DOMMsouseScroll",scroll,false)
+//        function scroll(event) {
+//            var event = event || window.event;
+//            var isDown = true   //假设向下
+//            if(event.detail){
+//                isDown = event.detail > 0 ? true : false;
+//            }else{
+//                isDown = event.wheelDelta > 0 ? false : true    ;
+//            }
+//            if(isDown){
+//                alert("向上滚动")
+//            }else{
+//                alert("向下滚动")
+//            }
+//        }
+//    }
+
+    //clientX clientY 鼠标在页面可视区域内的坐标位置
+    //screenX screenY 鼠标在显示器上的坐标位置
+    //pageX pageY     鼠标在当前页面的坐标位置
+    //滚动条没有离开第一屏时，client和page的值是一致的，一旦拖动滚动条，page获取的坐标还是基于整个页面，而client获取的坐标始终基于可视区
+
+//    onmousemove() 鼠标移动时触发的事件
+    document.onmousemove = function(){
+    box.style.left = event.pageX + "px";
+    box.style.top = event.pageY + "px";
+}
+</script>

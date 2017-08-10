@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之收缩字</title>
+    <style>
+        div{
+            border:1px solid;
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="展开" id="btn1">
+<input type="button" value="收缩" id="btn2">
+<div id="div"></div>
+</body>
+</html>
+<script>
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var div = document.getElementById("div");
+    var timer = null;
+    var content = 0;
+    var test = "";
+    var a = "_";
+    var word = "你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来,你什么时候来.";
+    btn1.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+
+            console.log(content);
+            content ++;
+            test = word.slice(0,content) + a;
+            div.innerHTML = test;
+            if(content > word.length){
+                clearInterval(timer);
+            }
+
+        },100)
+        btn2.onclick = function(){
+            clearInterval(timer);
+            timer = setInterval(function(){
+                content --;
+                test = word.slice(0,content) + a;
+                div.innerHTML = test;
+                if(content == 0){
+                    clearInterval(timer);
+
+                }
+
+            },100)
+        };
+    };
+
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height:200px;
+            width: 200px;
+            background: #ccc;
+        }
+        p{
+            height:70px;
+            width: 70px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <span id="span"></span>
+        <p></p>
+    </div>
+
+</body>
+</html>
+<script>
+//鼠标事件
+    //移入 mouseover  mouseenter      区别是mouseenter不支持事件冒泡
+    //移出 mouseout   mouseleave      区别是mouseleave不支持事件冒泡
+    //点击 click
+    //双击 dblclick
+    //右键 contextmenu
+    //鼠标按下未释放 mousedown
+    //鼠标释放 mouseup
+//    event.button  查看键值  左键0 右键2 滚轮1
+    i = 0;
+    document.onkeyup = function(){
+       span.innerHTML = i++;
+        console.log(event.key)
+    };
+
+//键盘事件
+    //keydown keypress    键盘按下未释放时触发  如果按住键盘不释放会连续触发
+        //mousedown 在Mac下 如果按住不释放的话,不会连续触发.但是在window下,是会连续触发的
+        //键盘的功能键onkeypress 比如shift上下左右
+//event.keyCode 用来检测键的键值    event.key获取当前按下的按键
+    //keyup     键盘按键释放时触发的事件
+
+//表单事件
+    //聚焦 获得焦点 onfocus
+    //失去焦点 onblur
+    //当内容发生改变时触发的事件 onchange
+    //当用户输入内容时触发 oninput
+    //提交表单时触发的事件 onsubmit
+
+
+//事件代理的优点:
+    //1.管理的函数变少了。不需要为每个元素都添加监听函数。对于同一个父节点下面类似的子元素，可以通过委托给父元素的监听函数来处理事件。
+    //
+    //2.可以方便地动态添加和修改元素，不需要因为元素的改动而修改事件绑定。
+    //
+    //3.JavaScript和DOM节点之间的关联变少了，这样也就减少了因循环引用而带来的内存泄漏发生的概率。
+
+
+//鼠标滚轮事件
+    //在火狐下 DOMMouseScroll 并且只能通过addEventListener()的方式添加
+        //event.detail: 表示滚动方向
+        //正数 : 向下滚动
+        //负数 : 向上滚动
+    //在其他浏览器下用的是 mousewheel
+        //wheelDetail表示滚动方向
+        //正数 : 向上滚动
+        //负数 : 向下滚动
+</script>

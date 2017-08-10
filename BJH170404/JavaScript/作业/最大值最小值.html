@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+</body>
+<script>
+    var num = []
+    for(var i = 0; i<10;i++){
+        num[i] = parseInt(Math.random()*(99-(-66)+1)-66);
+    }
+    console.log(num);
+    console.log('最大值:'+Math.max.apply(null,num));
+    console.log('最小值:'+Math.min.apply(null,num));
+    max = Math.max.apply(null,num);
+    min = Math.min.apply(null,num);
+    console.log('最大值下标'+num.indexOf(max));
+    console.log('最小值下标'+num.indexOf(min));
+</script>
+</html>

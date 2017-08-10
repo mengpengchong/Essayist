@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height:2000px;
+            width:2000px;
+        }
+        #box{
+            position: absolute;
+            background: green;
+
+        }
+        #box2{
+            background: pink;
+        }
+        #div{
+            position: absolute;
+            background: red;
+            width:200px;
+            height:300px;
+            border:10px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2">
+            <div id="div"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $("div").css({
+        'display':'inline-block',
+        'padding':'50px'
+    });
+    //offset()获取的是元素相对于窗口可视区域的距离 直接调用offset()获取的是一个对象,包括top和left
+    console.log($("#div").offset());
+    //position()获取的是元素的定位父级的距离 获取到的是一个对象,包括top和left两个属性
+    console.log($("#div").position())
+
+    //scroll()获取滚动高度 scrollTop()    获取滚动宽度 scrollLeft()
+    $(window).scroll(function(){
+        console.log($(document).scrollTop())
+    })
+
+   //width() 和 height() 获取的宽度和高度是不包括border 和 padding的 往里面传参数可以设置
+    $("#div").width(100)
+
+    //innerHeight() 包括padding的高度 不包括border 可以传参数  相当于clientWidth
+    console.log($("#div").innerHeight())
+
+    //outerWidth() outerHeight() 包括padding和border 可以传参数 相当于offsetWidth
+    console.log($("#div").outerHeight())
+
+
+
+
+</script>

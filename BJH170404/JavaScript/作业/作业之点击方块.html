@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            list-style: none;
+            float: left;
+            height:100px;
+            width:100px;
+            background: red;
+            border:1px solid black;
+        }
+        #box {
+            overflow: hidden;
+        }
+        #box1{
+            overflow: hidden;
+        }
+        .box2{
+            width:400px;
+        }
+        .box3{
+            width:400px;
+        }
+        .box4{
+            width:220px;
+        }
+        .box5{
+            width:220px;
+        }
+        .box6{
+            width:120px;
+        }
+        .box7{
+            width:120px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="btn">
+    <input type="button" value="提交" id="btn1">
+
+    <ul id="box">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul id="box1">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</body>
+</html>
+<script>
+    btn1.onclick = function(){
+        if(btn.value == 2){
+            box.className = "box4";
+            box1.className = "box5";
+        }else if(btn.value == 3){
+            box.className = "box2";
+            box1.className = "box3";
+        }else if(btn.value == 1){
+            box.className = "box6";
+            box1.className = "box7";
+        }
+        else{
+            alert("别点我")
+        }
+    }
+</script>

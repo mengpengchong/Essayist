@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_2(数据类型转换与运算符)</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var num = 10;
+    var str = "10";
+    var bool = true;
+    var a;
+    var obj = null;
+//      ............................显示类型转换...............................
+
+//    Number()转换为数字类型
+        console.log(Number(bool));      //true为1 false为0
+        console.log(Number(null));      //null为0
+        console.log(Number(undefined)); //undefined为NaN
+
+        //    NaN not a number 不是一个数字(数字类型的一种) 他与任何值都不相等
+
+//    String()转换为字符串类型
+        console.log(String(num));
+        console.log(String(bool));
+        console.log(String(obj));
+
+//    Boolean()转换为布尔值类型
+
+//    parseInt();      parseFloat();
+//    强制转换为数字类型的两个方法    (从左到右进行数字的提取,遇到非数字返回,如果一开始就提取不到数字,返回NaN)
+    //    parseInt()  取整
+            console.log(parseInt(true));
+            console.log(parseInt(12.9));
+
+    //    parseFloat() 取小数
+            console.log(parseFloat(45.123456));
+
+//     .............................隐式类型转换...............................
+
+    var a = 10;
+    var b = "10";
+    console.log(typeof(a + ""));
+    console.log(typeof + b);
+    //隐式类型转换
+    //数字 + 字符串 得到字符串
+    //+ 字符串 得到数字类型  +号相当于取正数
+
+//    ..............................运算符....................................
+
+//  算术运算符: + - * / %(取余数,求模)
+
+    // + 也可以是连接符
+        console.log(100 + "hello");
+        // +前后都是数字类型的话,进行加法运算,
+        //如果+前后有任何一边是字符串类型,+号的作用就是进行字符串拼接
+        console.log("1" + "10");
+        console.log(1 + true);
+
+    // - 减法运算
+        console.log(5 - true);    //结果为4
+        console.log(3 - "5");     //结果为-2
+        console.log(3 - "1abc");  //结果为NaN
+        //数字减去一个非数,结果还是非数
+        console.log(3 - null);    //结果为3
+        console.log(3 - undefined)//结果为NaN
+
+    // % 取余数,求模
+        console.log(9 % 4);        //结果为1
+
+    // 复合运算符 += -=
+        // = 表示赋值   把等号右边的值赋给左边
+        // == 表示比较
+
+
+
+
+
+
+
+
+</script>

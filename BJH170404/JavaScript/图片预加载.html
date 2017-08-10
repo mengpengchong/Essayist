@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <p>当前加载0%</p>
+    <div id="box"></div>
+</body>
+</html>
+<script>
+    //图片预加载
+    function laoding(){
+        var p = document.getElementsByTagName("p")[0];
+        var box = document.getElementById("box");
+        var index = 0; //这个变量用来保存当前加载了多少张图片
+        var imgArr = ["http://pic73.nipic.com/file/20150723/20518690_151037439000_2.jpg","http://tupian.enterdesk.com/2015/xu/08/13/1/11.jpg","http://imgsrc.baidu.com/imgad/pic/item/08f790529822720e0c32e2d971cb0a46f21fab10.jpg","http://t1.niutuku.com/960/24/24-310623.jpg","http://pic.58pic.com/58pic/17/66/35/39S58PIC7AR_1024.jpg","http://img3.imgtn.bdimg.com/it/u=3681146708,2751725105&fm=26&gp=0.jpg"];
+        //图片加载
+        var imgObj = [];    //用来保存加载完成的图片
+        function loadImg(){
+            for(var i = 0; i < imgArr.length;i++){
+                var img = new Image();
+                img.onload = function(){
+                    index++;    //每加载完一张图片,数字+1
+                    console.log(index,imgObj);
+                    imgObj.push(this);
+                    progress();
+
+                };
+                img.src = imgArr[i];
+            }
+        }
+        loadImg();
+        //百分比
+        function progress(){
+            if(index == imgArr.length){
+                for(var i = 0;i < imgObj.length;i++){
+                    box.appendChild(imgObj[i]);
+                    p.style.display = "none";
+                }
+            }
+            p.innerHTML = "当前加载" +  parseInt(index / imgArr.length * 100 ) + "%";
+        }
+    }
+    laoding()
+</script>

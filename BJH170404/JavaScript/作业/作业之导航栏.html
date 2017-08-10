@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            width:80px;
+            text-align: center;
+            background:pink;
+            /*margin-left: 40px;*/
+        }
+        div{
+            width:80px;
+            border:1px solid red;
+            /*margin:10px 0 0 32px;*/
+            transition: 1s;
+            position: absolute;
+            left:0;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>按钮1</li>
+        <li>按钮2</li>
+        <li>按钮3</li>
+        <li>按钮4</li>
+        <li>按钮5</li>
+    </ul>
+    <div id="border"></div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+    var list = document.getElementsByTagName("li");
+    var border= document.getElementById("border");
+
+
+    function slider(num){
+        var t = 0;
+        var b = border.offsetLeft;
+        console.log(b);
+        var c = 70*num - b;
+        console.log(c);
+        var d = 5;
+        timer = setInterval(function(){
+            if(t > d){
+                clearInterval(timer);
+            }
+            border.style.left = Tween.Linear(t,b,c,d) + 'px';
+            t++;
+        },100)
+    }
+    for(var i = 0;i<list.length;i++){
+        (function(i){
+            list[i].onclick = function(){
+                slider(i);
+            }
+        })(i)
+    }
+//    for(var i = 0;i < list.length;i++){
+//        list[i].index = i;
+//        list[i].onclick = function(){
+//            border.style.left = Tween.Linear(t,b,c,d) * this.index + 'px';
+//        }
+//    }
+</script>

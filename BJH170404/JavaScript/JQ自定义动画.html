@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点" id="btn">
+    <input type="button" value="点1" id="btn1">
+    <div id="box"></div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //animate() 不支持颜色的渐变
+    //delay() 延迟执行
+    $("#btn").click(function(){
+        $("#box").animate({
+            'left':'200px'
+    },1000).delay(1000).animate({
+            'height':'200'
+        },1000).animate({
+            'left':'300'
+        },200)
+    });
+    $("#btn1").click(function(){
+        $("#box").stop(true,true);
+        //不传参数,默认是元素停止当前动画,继续下一个动画
+        //如果传入一个参数true,表示清除元素所有的动画
+        //如果传入两个参数第一个false,第二个true,会瞬间完成当前动画,继续执行下面动画
+        //传入两个参数true 让当前动画瞬间完成,清空后面所有动画
+    })
+</script>

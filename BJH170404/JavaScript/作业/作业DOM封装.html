@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+</html>
+<script>
+    var list = document.getElementsByTagName("li");
+    //获取下一个兄弟节点
+    function getNext(obj){
+        if(!obj ||obj.nextSibling){
+            //如果没有传参数,或者传递的参数没有下一个兄弟节点
+            return
+        }
+        if(obj.nextSibling.nodeType == 1){
+            //元素节点
+            return obj.nextSibling
+        }else{
+            return getNext(obj.nextSibling)
+        }
+    }
+    function getPrev(obj){
+        if(!obj || obj.previousSibling){
+            return
+        }
+        if(obj.previousSibling.nodeType == 1){
+            return obj.previousSibling
+        }else{
+            return getPrev(obj.previousSibling)
+        }
+    }
+
+    function getFirst(obj){
+        if(!obj || obj.firstChild){
+            return
+        }
+        if(obj.firstChild.nodeType == 1){
+            return obj.firstChild
+        }else{
+            return getNext(obj.firstChild)
+        }
+    }
+
+    function getLast(obj){
+        if(!obj || obj.lastChild){
+            return
+        }
+        if(obj.lastChild.nodeType == 1){
+            return obj.lastChild
+        }else{
+            return getPrev(obj.lastChild)
+        }
+    }
+    console.log(getLast(list))
+</script>

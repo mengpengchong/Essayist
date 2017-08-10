@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之定时器按钮倒计时</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="button" value="点我" id="btn">
+</body>
+</html>
+<script>
+    var num = 60;
+    timer = null;
+    btn.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            btn.value = num;
+            num--;
+            if(btn.value == 0){
+                num = 0;
+            }
+
+
+        },100)
+
+
+
+    }
+</script>

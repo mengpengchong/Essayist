@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之上下拉</title>
+    <style>
+        div{
+            height:500px;
+            width:800px;
+            border:1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        p{
+            width:74.3px;
+            height:500px;
+            border:1px solid red;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            position: absolute;
+            left:30%;
+        }
+        @keyframes move {
+            0%{
+                transform: translateY(600px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+        @keyframes move1 {
+            0%{
+                transform: translateY(-600px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+        @keyframes move2 {
+            0%{
+                transform: translateY(0px);
+            }
+            100%{
+                transform: translateY(-600px);
+            }
+        }
+        @keyframes move3 {
+            0%{
+                transform: translateY(0px);
+            }
+            100%{
+                transform: translateY(600px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="one">
+        <input type="button" value="按钮" id="btn">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+</body>
+</html>
+<script>
+    var p = document.getElementsByTagName("p");
+    var bool = true;
+    btn.onclick = function(){
+            console.log(bool);
+        if(bool == true){
+            for(var i = 0;i < p.length;i++){
+                if(i % 2 ==0){
+                    console.log();
+                    p[i].className = "red";
+                    p[i].style.animation = "move 0.7s linear"
+                }else{
+                    p[i].className = "red";
+                    p[i].style.animation = "move1 0.7s linear"
+                }
+            }
+            bool = false;
+        }else if(bool == false){
+            for(var i = 0;i < p.length;i++){
+                if(i % 2 ==0){
+                    p[i].className = "red";
+                    p[i].style.animation = "move2 0.7s linear"
+                }else{
+                    p[i].className = "red";
+                    p[i].style.animation = "move3 0.7s linear"
+                }
+            }
+            bool = true;
+        }
+    }
+
+
+
+</script>

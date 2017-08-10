@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9.循环</title>
+    <style>
+        ul li{
+            width:200px;
+            height:30px;
+            border:1px solid;
+            list-style: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点我">
+    <ul>
+
+    </ul>
+</body>
+</html>
+<script>
+//    ...................................for循环................................
+
+//    打印从1到100之间所有3的倍数
+//    for(var i = 0;i < 100;i++){
+//        if(i % 3 == 0){
+////            console.log(i)
+//        }
+//    }
+
+//    var btn = document.getElementsByTagName("input")[0];
+//    var ul = document.getElementsByTagName("ul")[0];
+//    str = "";
+//    btn.onclick = function () {
+//        for(var i = 0;i < 12;i++){
+//            str += "<li></li>";
+//        }
+//       ul.innerHTML += str;
+//        var li = document.getElementsByTagName("li");
+//        for(var i = 0;i < li.length;i++){
+//            if(i % 2 == 0){
+//                li[i].style.background = "green";
+//            }else{
+//                li[i].style.background = "red";
+//            }
+//        }
+//    }
+
+        //添加ul下的li
+//    btn.onclick = function(){
+//        var str = "<ul>";
+//        for(var i = 0; i < 5;i++){
+//            str += "<li></li>";
+//        }
+//        str += "</ul>";
+//        document.getElementsByTagName("body")[0].innerHTML += str;
+//    }
+
+
+
+
+
+//    .................................while循环................................
+
+//while循环(循环条件){
+//    循环变量变化
+//      循环语句
+//}
+//  while循环适合于未知次数的循环
+   /* var i = 1;
+    while(i < 10){
+      if(i % 2 == 0){
+          console.log(i)
+      }
+//        console.log(i);
+        i +=1;
+    }*/
+
+
+//    ................................do...while循环..............................
+
+//    do...while循环和while循环的区别:
+        //while循环是只有满足循环条件的前提下,才会执行循环语句.不满足不执行.
+        //do...while循环:会先执行一遍do里面的内容,然后再判断循环条件是否满足,如果满足继续执行,如果不满足则终止.
+    var i = 0;
+    do{
+        console.log(i)
+        i++;
+    }while(i < 10)
+
+
+
+
+
+
+</script>

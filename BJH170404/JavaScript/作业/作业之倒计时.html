@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        p{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+</body>
+</html>
+<script>
+    function time(){
+        var p = document.getElementsByTagName("p");
+        var presentTime = new Date();
+        var futureTime = new Date("2017,7,6,0:00:00");
+        var RemainingTime = futureTime.getTime() - presentTime.getTime();
+        var x = parseInt(RemainingTime / 1000 / 60 / 60 / 24);
+        var y = parseInt(RemainingTime / 1000 / 60 / 60 % 24);
+        var z = parseInt(RemainingTime / 1000 / 60 % 60);
+        var o = parseInt(RemainingTime / 1000 % 60 );
+        p[0].innerHTML = "还剩" + x + "天";
+        p[1].innerHTML = y + "小时";
+        p[2].innerHTML = z + "分钟";
+        p[3].innerHTML = o + "秒";
+    }
+    setInterval(time,1)
+
+</script>

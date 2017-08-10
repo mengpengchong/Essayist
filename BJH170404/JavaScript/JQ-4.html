@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+<div class="box on">dd1d</div>
+<div class="box in">dd2d
+    <p></p>
+    <strong>
+        <span></span>
+    </strong>
+</div>
+<div class="box">dd3d</div>
+<input type="text">
+<input type="text" disabled = "disabled">
+<input type="text">
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //eq() 参数可以是正数,也可以是负数,正数从0开始,表示下标从小到大 负数 -1代表第一个
+
+    //hasClass() 检查当前的元素是否含有某个特定的类,如果有,则返回true
+    $(".box").click(function(){
+        if($(this).hasClass('box')){
+            $(this).css({
+                'color':"red"
+            })
+        }
+    });
+
+    //filter() 筛选出与指定表达式匹配的元素集合
+    console.log($("input").filter(function(){
+        return $(this).prop("disabled")
+    }));
+
+    //is() 匹配的元素集合中只要有一个符合给定的条件,那么整体返回true,类似于数组的some()方法
+    console.log($(".box").is(function(){
+        return $(this).hasClass("on")
+    }));
+
+    //map()
+    console.log($("div").map(function(){
+        return $(this).html()
+    }));
+
+    //next() 类似于+ 只选择到相邻的后面的兄弟元素
+    console.log($(".on").next())
+
+    //nextAll() 类似于~ 选择到相邻的后面的所有兄弟元素
+    console.log($(".on").nextAll())
+
+    //offsetParent 获取指定元素的定位父级
+    console.log($(".on").offsetParent())
+
+    //parent() 获取指定元素的唯一父级元素
+    console.log($("strong").parent())
+
+    //parents() 获取指定元素的全部父级元素
+    console.log($("strong").parents())
+
+    //siblings() 获取指定元素的所有兄弟级别元素
+    console.log($("strong").siblings())
+
+    //find() 主要是用来缩小查找范围
+    console.log($(".box strong").find('span'))
+
+    //children() 获取指定元素的所有子元素
+    console.log($(".in").children())
+</script>

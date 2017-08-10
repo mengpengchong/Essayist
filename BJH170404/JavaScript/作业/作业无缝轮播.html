@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之无缝轮播</title>
+    <style>
+        img{
+            width:300px;
+            height:250px;
+        }
+        #box{
+            height:250px;
+            width:300px;
+            border:1px solid;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        #box1{
+            height:250px;
+            width:1600px;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="GoGo!" id="btn">
+    <div id="box">
+        <div id="box1">
+            <img src="img/4.jpg" alt="">
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var img = document.getElementsByTagName("img");
+    var num = 0;
+    var timer = null;
+    var adc = img[0].offsetWidth * 4;
+    btn.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            num-=0.5;
+            box1.style.marginLeft = num + "px";
+            if(-num >= adc){
+                num = 0;
+            }
+        },1)
+    }
+
+</script>

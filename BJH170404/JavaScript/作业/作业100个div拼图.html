@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>作业之100个div拼图</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;list-style: none;}
+        #one{
+            height: 900px;
+            width:720px;
+            display: block;
+            /*border:1px solid;*/
+        }
+        ul{
+            list-style: none;
+            font-size: 0;
+        }
+        #one ul li{
+           display: inline-block;
+            background:url(IMG_20170403_180640.jpg) 0 0/800px 800px no-repeat;                    width:72px;
+            height:72px;
+            /*border:1px solid red;
+            box-sizing: border-box;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="one"></div>
+</body>
+</html>
+<script type="text/javascript">
+    for(var i = 0;i < 10;i++){
+        var ul = document.createElement("ul");
+        one.appendChild(ul);
+        for(var k = 0;k < 10;k++){
+            var li = document.createElement("li");
+            ul.appendChild(li);
+            li.style.backgroundPositionX = k*-72 +"px";
+            li.style.backgroundPositionY = i*-72 +"px";
+        }
+    }
+</script>

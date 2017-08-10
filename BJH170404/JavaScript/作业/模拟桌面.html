@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            background: wheat;
+        }
+        nav{
+            width:100%;
+            height:20px;
+            background: whitesmoke;
+        }
+        nav div:nth-child(1){
+            width:7px;
+            height:100%;
+            margin-left: 10px;
+            background: url("img/苹果.png") 0 0 / 22px 18px;
+        }
+        nav div img{
+            height:16px;
+        }
+        nav div{
+            display: inline-block;
+            padding: 0 8px;
+            height:100%;
+            vertical-align: top;
+            text-align: center;
+            line-height: 23px;
+            font-size: 14px;
+        }
+        nav div ul{
+            background:whitesmoke;
+            position: absolute;
+        }
+        .bar_ul1{
+            top:20px;
+            left:10px;
+            width:160px;
+            height:330px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul2{
+            width:200px;
+            height:420px;
+            top:20px;
+            left:40px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul3{
+            width:180px;
+            height:210px;
+            top:20px;
+            left:110px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul4{
+            width:200px;
+            height:370px;
+            top:20px;
+            left:160px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul5{
+              width:200px;
+              height:300px;
+              top:20px;
+              left:210px;
+              text-align: left;
+              display: none;
+          }
+        .bar_ul6{
+            width:200px;
+            height:210px;
+            top:20px;
+            left:255px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul7{
+            width:200px;
+            height:280px;
+            top:20px;
+            left:305px;
+            text-align: left;
+            display: none;
+        }
+        .bar_ul8{
+            width:200px;
+            height:150px;
+            top:20px;
+            left:360px;
+            text-align: left;
+            display: none;
+        }
+        nav div ul li{
+            width:100%;
+            box-sizing: border-box;
+            padding: 5px 20px ;
+        }
+        li:hover{
+            background: cornflowerblue;
+            color: white;
+        }
+        div:hover{
+            background: cornflowerblue;
+        }
+        #time{
+            display: inline-block;
+            margin-left: 1000px;
+            width:300px;
+            height:100%;
+            line-height: 22px;
+            text-align: center;
+        }
+        #time:hover{
+            background: red;
+            color: white;
+        }
+        #rightBar{
+            width:150px;
+            height: 200px;
+            background: whitesmoke;
+            display: none;
+            position: absolute;
+        }
+        nav div ul span{
+            margin-left: 20px;
+            padding-bottom: 5px;
+        }
+        #rightBar p{
+            padding:5px 0;
+        }
+        hr{
+            border-top:1px solid darkgray;
+            opacity:0.5;
+        }
+        #rightBar p:hover{
+            background: cornflowerblue;
+            color: white;
+        }
+        #hideNewFolder{
+            height:400px;
+            width: 250px;
+            background: rgb(231,231,231);
+            position: absolute;
+            margin: 10px;
+            display: none;
+            z-index: -5;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <ul class="bar_ul1">
+                <li>关于本机</li>
+                <hr>
+                <li>系统偏好设置</li>
+                <li>App store</li>
+                <hr>
+                <li>最近使用项目</li>
+                <hr>
+                <li>睡眠</li>
+                <hr>
+                <li>重新启动</li>
+                <li>关机</li>
+                <li>注销</li>
+            </ul>
+        </div>
+        <div>Chrome
+            <ul class="bar_ul2">
+                <li>关于Google chrome</li>
+                <hr>
+                <li>偏好设置</li>
+                <hr>
+                <li>登录到chrome...</li>
+                <li>清除浏览器数据...</li>
+                <li>导入书签和设置</li>
+                <hr>
+                <li>服务</li>
+                <li>隐藏Google chrome</li>
+                <li>隐藏其他应用</li>
+                <hr>
+                <li>退出前提示</li>
+                <hr>
+                <li>退出Google chrome</li>
+            </ul>
+        </div>
+        <div>文件
+            <ul class="bar_ul3">
+                <li>新的标签页</li>
+                <li>打开新的窗口</li>
+                <li>打开新的隐身窗口</li>
+                <li>重新打开关闭的标签页</li>
+                <li>打开文件</li>
+                <li>打开位置</li>
+            </ul>
+        </div>
+        <div>修改
+            <ul class="bar_ul4">
+                <li>撤销</li>
+                <li>重做</li>
+                <li>剪切</li>
+                <li>复制</li>
+                <li>粘贴</li>
+                <li>粘贴并匹配样式</li>
+                <li>删除</li>
+                <li>全选</li>
+                <li>查找</li>
+                <li>拼写和语法</li>
+                <li>语音</li>
+            </ul>
+        </div>
+        <div>视图
+            <ul class="bar_ul5">
+                <li>总是显示书签栏</li>
+                <li>在全屏下始终显示工具栏</li>
+                <li>停止</li>
+                <li>重新加载页面</li>
+                <li>进入全屏幕</li>
+                <li>实际大小</li>
+                <li>放大</li>
+                <li>缩小</li>
+                <li>开发者</li>
+
+            </ul>
+        </div>
+        <div>书签
+            <ul class="bar_ul6">
+                <li>书签管理器</li>
+                <li>为此页添加书签</li>
+                <li>为所有标签页添加书签</li>
+                <li>打开所有书签</li>
+                <li>在新窗口打开所有书签</li>
+                <li>在隐身窗口打开所有书签</li>
+            </ul>
+        </div>
+        <div>窗口
+            <ul class="bar_ul7">
+                <li>最小化</li>
+                <li>缩放</li>
+                <li>选择上一个标签</li>
+                <li>选择下一个标签</li>
+                <li>下载内容</li>
+                <li>扩展程序</li>
+                <li>任务管理器</li>
+                <li>前置全部窗口</li>
+            </ul>
+        </div>
+        <div>帮助
+            <ul class="bar_ul8">
+                <span>搜索</span>
+                <input type="text">
+                <li>报告问题</li>
+                <li>Google chrome 帮助</li>
+            </ul>
+        </div>
+        <p id="time"></p>
+    </nav>
+    <div id="rightBar">
+        <p id="newFolder">新建文件夹</p>
+        <hr>
+        <p id="brief">显示简介</p>
+        <hr>
+        <p>更改桌面背景</p>
+        <p>整理</p>
+        <p>查看显示选项</p>
+    </div>
+    <div id="hideNewFolder">
+
+    </div>
+</body>
+</html>
+<script>
+        var nav = document.getElementsByTagName("nav")[0];
+        var body = document.getElementsByTagName("body")[0];
+        var div = nav.getElementsByTagName("div");
+        var ul = document.getElementsByTagName("ul");
+        var time = document.getElementById("time");
+        var brief = document.getElementById("brief");
+        var hideNewFolder = document.getElementById("hideNewFolder");
+        var newFolder = document.getElementById("newFolde");
+        var rightBar = document.getElementById("rightBar");
+        for(var i = 0;i < div.length;i++){
+            div[i].onclick = function(){
+                this.firstElementChild.style.display = "block";
+                fn1();
+            };
+            function fn1(){
+                for(var i = 0;i < div.length;i++){
+                    div[i].onmouseover = function(){
+                        this.firstElementChild.style.display = "block";
+                    };
+                    div[i].onmouseout = function(){
+                        this.firstElementChild.style.display = "none";
+                    }
+                }
+            }
+        }
+        timer = setInterval(function(){
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            time.innerHTML = month  + "月" + day  + "日"  + h + ":" + m + ":"  + s
+        },1000);
+
+
+        document.oncontextmenu = function(event){
+            var event = event || window.event;
+            var l = event.clientX - rightBar.offsetWidth - rightBar.offsetHeight;
+            var t = event.clientY - rightBar.offsetHeight - rightBar.offsetWidth;
+//            var rightBar = document.createElement("div");
+//            body.appendChild("rightBar");
+            rightBar.style.display = "block";
+            rightBar.style.left = l + "px";
+            rightBar.style.top = t + "px";
+            return false;
+        };
+        document.onclick = function(){
+            rightBar.style.display = "none";
+//            hideNewFolder.style.display = "none";
+        };
+        brief.onclick = function(){
+            hideNewFolder.style.display = "block";
+        }
+
+
+
+
+</script>

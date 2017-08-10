@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width:10px;
+            height:10px;
+            background: red;
+            position: absolute;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="开始画图">
+</body>
+</html>
+<script>
+    btn.onclick = function(){
+        var body = document.getElementsByTagName("body")[0];
+        document.onmousedown = function(event){
+            document.onmousemove = function(event){
+                var box = document.createElement("div");
+                var event = event || window.event;
+                body.appendChild(box);
+                box.style.left = event.clientX + "px";
+                box.style.top = event.clientY + "px";
+            };
+            document.onmouseup = function(){
+                document.onmousemove = null;
+            }
+
+        }
+    }
+
+
+</script>

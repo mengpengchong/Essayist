@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //.1区号由3到4位组成 开头为3位的 后面为8位 开头为4位的后面是7位 开头必须是0 第二位不能是零
+
+    //1.匹配座机号码
+    var reg = /^0[1-9]\d{1}\-[1-9]\d{7}$|^0[1-9]\d{2}\-\d{7}$/;
+    var str = "037-2703492";
+    console.log(reg.test(str));
+
+    //    3.判断密码等级
+    //		纯数字，纯字母组合成的密码等级为低
+    //		数字字母组合的密码等级为中
+    //		数字字母下划线组合而成的密码等级为高
+    //      密码为6-18位
+
+    var str ="24dfjkdfjk";
+    var reg =/^\d{6,18}$|^[a-z]{6,18}$/i; //初级密码
+    var reg1 = /^(\d|[a-z]){6,18}$/i;    //中级密码
+    var reg2 = /^\w{6,18}$/;            //高级密码
+
+    if(reg.test(str)){
+        alert("这是低级密码")
+    }else if(reg1.test(str)){
+        alert("这是中级密码")
+    }else if(reg2.test(str)){
+        alert("这是高级密码")
+    }else{
+        alert("啥也不是");
+    }
+
+    //1.首先是6-18个字符
+    //2.由a～z不区分大小写的英文字母、0～9的数字、点、减号或下划线组成,用户名不能使用中文,用户名的起始字符    必须是英文字母
+    //3.必须是126或者163的邮箱
+    var reg = /^\w{6,18}@(126|163)\.com$/;
+    var str3 = "5274mengpengchong@163.com";
+    console.log(reg.test(str3));
+
+
+    var str = "原来，这位女孩将自己的最新款iPhone手机整晚充电，导致充电器起火，现在只剩下一片焦黑的废墟，     事发后这位少女接受采访时强调，起火的充电器是苹果公司的原厂产品.";
+    var reg = /iPhone|充电器|苹果公司/g;
+    console.log(str.replace(reg,function(str2){
+        var result = "";
+        console.log(result);
+        // console.log(str)
+        for(var i = 0; i < str2.length; i++){
+            result += "*";
+        }
+        return result;
+    }))
+
+
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height:500px;
+            width:800px;
+            border:1px solid;
+            margin: 100px auto;
+            position: relative;
+        }
+        p{
+            width:40px;
+            height:40px;
+            background: goldenrod;
+            border-radius: 50%;
+            position: absolute;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var div = document.getElementsByTagName("div")[0];
+    var p = document.getElementsByTagName("p")[0];
+    var speedY = 3;
+    var speedX = 1;
+    setInterval(function(){
+        p.style.left = p.offsetLeft + speedX + "px";
+        if(p.offsetLeft + p.offsetWidth>= 800){
+            speedX = -speedX;
+        }else if(p.offsetLeft <= 0){
+            speedX = -speedX;
+        }
+        p.style.top = p.offsetTop + speedY + "px";
+        if(p.offsetTop + p.offsetHeight >= 500){
+            speedY = -speedY;
+        }else if(p.offsetTop <= 0){
+            speedY = -speedY;
+        }
+    },1)
+
+
+</script>

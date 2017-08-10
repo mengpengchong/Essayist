@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea{
+            resize:none;
+            height:300px;
+            width:300px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="text" cols="30" rows="10" ></textarea>
+    <button id="btn" >点击运行</button>
+</body>
+</html>
+<script>
+    btn.onclick = function(){
+        if(!text.value){
+            alert("请输入可执行的代码");
+            return;
+        }
+        window.open().document.write(text.value)
+    }
+</script>

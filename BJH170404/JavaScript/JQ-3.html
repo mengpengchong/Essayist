@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            border:1px solid;
+        }
+        .active{
+            background: red;
+            border:1px dotted blue;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="超级变身">
+<input type="checkbox" value="超级变身">
+<div id="box" class="dd">dd</div>
+<ol>
+    <li class="ew"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //参数可以是一个指定的className
+    $("input").click(function(){
+        $("#box").addClass('active')
+    });
+    //也可以是一个函数 如果是函数的话 这个函数的返回值就是对应元素的className
+    $("li").addClass(function(){
+        return "li-" + $(this).index()
+    });
+
+    //removeClass() 移除class  可以传入函数
+    $("input").click(function(){
+        $("li").removeClass(function(){
+            console.log($(this).next());
+        })
+    });
+
+    //toggleClass() 如果存在(不存在)就删除(添加)一个类
+
+    //text() 设置和获取选择元素的文本内容
+    console.log($("#box").text("ss"));
+
+    //attr() 设置或返回被选元素的属性值 如果传递一个参数,这个参数只能是属性名, 两个值 意味着设置
+    console.log($("script:eq(0)").attr("src"));
+    console.log($("input:eq(1)").attr("checked",true));
+
+    //prop() 方法具有true和fslse两个属性,如 checked,selected 或者disabled 使用prop() 其他的使用attr()
+    console.log($("input").prop({
+        disabled:true
+    }))
+
+
+</script>

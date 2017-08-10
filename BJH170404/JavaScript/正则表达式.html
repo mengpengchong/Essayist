@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+//字符串方法
+    //1.indexOf()
+        //1.只能查找具体的字符串,不能进行模糊查找
+        //2.可以指定开始查找的位置
+    //2.match()
+        //将匹配到的结果存入到数组中,并返回这个数组
+    //3.search()
+        //可以进行模糊查找,只能从字符串开头开始查找,不能指定查找的位置
+
+    //正则方法:
+        //1.test() 检测字符串中是否有正则中需要匹配的子字符串,如果有返回true,如果没有返回false
+        //2.exec() 将匹配的结果存入数组中,并返回这个数组. 匹配不上返回null
+
+//------------------------------------------------------------------------------
+
+
+//    元字符
+// . 表示匹配任意字符 出了换行和行结束符
+var str = "323";
+var reg = /.+/;
+console.log(reg.test(str));
+
+//   \转义字符
+var reg = /\./;
+var str = ".";
+console.log(reg.test(str));
+
+// \d 表示匹配 0-9
+var str = "1234567890";
+var reg = /^\d{10}$/;
+console.log(reg.test(str));
+
+// \D 表示匹配非数字
+var str = "#";
+var reg = /\D/;
+console.log(reg.test(str));
+
+// \w 表示匹配数字,字母,下划线 0-9,a-z,A-Z
+var str = "1_aX9";
+var reg = /\w+/;
+console.log(reg.test(str))
+
+// \W 表示匹配除数字字母下划线外的特殊字符
+var str = "#";
+var reg = /\W+/;
+console.log(reg.test(str));
+
+// \s 表示匹配空白字符
+var str = "hello ";
+var reg = /\s/;
+console.log(str.match(reg));
+
+// \S 表示匹配非空白字符
+var str = "#$%2f";
+var reg = /\S+/;
+console.log(reg.test(str));
+
+// \b 匹配单词边界	\b放前边表示匹配字符左边界 放后边表示匹配字符右边界
+var str = "this is a word";
+var reg = /\bis/;
+console.log(str.match(reg));
+
+// \B 表示匹配非单词边界
+var str = "this is a word";
+var reg = /\Bis/;
+console.log(str.match(reg));
+
+// \n 表示匹配换行
+var str = "hello,word\n";
+var reg = /\n/;
+console.log(str.match(reg));
+
+// [] 表示匹配任意一个出现在[]内的字符
+// [] 只能匹配一个字符
+// QQ号最少5位 最多12位
+var str = "hello,word\n";
+var reg = /^[1-9]\d{4,11}$/;
+var str = "10000";
+console.log(reg.test(str));
+
+//[^] 表示匹配除了[]内出现的任意字符
+var str = "aq";
+var reg = /[^abc]/;
+console.log(reg.test(str))
+
+// - 连字符 [0123456789] [0-9]
+var reg = /[0-9]/;		//等同于\d
+var reg = /[a-zA-Z0-9]/ ; //等同于\w
+
+// () 分组
+var str = "abdc";
+var reg = /^(abc)/;
+console.log(reg.test(str));
+
+// | 或
+var reg = /^[(abc)|(nihao)]/;
+var str = "abcdef";
+var str2 = "nihao woshi zhengze";
+console.log(reg.test(str));
+console.log(reg.test(str2));
+
+//  \u4e00-\u9fa5 匹配汉字
+var str = "蒙芃憧";
+var reg = /^[\u4e00-\u9fa5]{2,5}$/;
+console.log(reg.test(str));
+
+//匹配手机号码 必须1开头 位数必须11位 必须全部是数字 第二位必须是3 4 5 7 8
+var str = 18732756072
+var reg = /^1[34578]\d{9}$/;
+console.log(reg.test(str));
+
+//实现过滤字符串前后空格的情况
+var str = "  hello world   ";
+var reg = /^\s+|\s+$/g;
+console.log(str.replace(reg,"").length);
+
+    //量词
+
+// * 匹配零个到多个
+var reg = /a*/;
+console.log(reg.test(str));
+
+
+// ? 匹配零次或一次
+var str = "1.1";
+var str2 = "11";
+var reg = /\d+\.?\d+/;
+console.log(reg.test(str));
+console.log(reg.test(str2));
+
+//{x} 匹配x次
+var str = "12345";
+var reg = /^\d{5}$/;
+console.log(reg.test(str));
+
+//{x,y} 匹配最少x次,最多y次
+var str = "1228";
+var reg = /^\d{3,5}$/;
+console.log(reg.test(str));
+
+//{x,}最少匹配x次,最多不限
+var reg =/^\d{1,}$/;
+var str = "1";
+console.log(reg.test(str));
+
+//?=n 匹配到任何其后紧接指定字符串n的字符串
+var str = "123c123ba123a";
+var reg = /\d+(?=a)/;
+console.log(reg.exec(str));
+
+//?!n 匹配任何其后没有紧接指定字符串n的字符串
+var str = "1234a";
+var reg = /\d+(?!a)/;
+console.log(reg.exec(str));
+
+
+//修饰符 i g m
+    //		//i 表示不区分大小写
+    //		var str = "hellow,word";
+    //		var reg = /W/i
+    //		console.log(str.match(reg));
+    //
+    //		//g 表示全局匹配(在全局范围内查找)
+    //		var reg = /l/g;
+    //		console.log(str.replace(reg,"波波"))
+    //
+    //		//m 表示匹配多行
+    //		var str = "hello,word\n";
+    //		console.log(str)
+    //		var reg = /d$/m;
+    //		console.log(reg.test(str))
+
+
+    var str = " this is a test ";
+    //过滤掉字符串中所有的空格
+    var reg = /\s/g;
+    console.log(str.replace(reg,""));
+
+    //写一个正整数
+    var reg = /^[1-9]\d*$/;
+    var str = "01234";
+    console.log(reg.test(str));
+
+    //负整数
+    var reg = /^-[1-9]\d*$/;
+
+    //整数
+    var reg = /^\-?[1-9]\d*$/;
+    console.log()
+
+
+//通过class获取元素
+function getByClass(cl){
+    var reg = new RegExp("\\b" + cl + "\\b");
+    var arr = document.getElementsByTagName("*");
+    var arr2 = [];
+    for(var i = 0;i < arr.length;i++){
+        if(reg.test(arr[i].className)){
+            arr2.push(arr[i])
+        }
+    }
+    return arr2
+}
+console.log(getByClass("div"))
+</script>

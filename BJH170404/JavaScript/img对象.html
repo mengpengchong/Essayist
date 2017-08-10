@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+//    实例化图片对象   接受两个参数  分别代表图片的宽高 直接传数值,不需要加单位 如果只传一个参数,那和这个参数表示偶的宽度
+    var img = new Image(300,200);
+    img.src = "http://img5.imgtn.bdimg.com/it/u=488525661,1861578692&fm=26&gp=0.jpg";
+    img.onload = function(){
+        console.log(img.complete);
+    };
+//    hspece    在图片左右的空间(留白)
+//    vspace    图片上下的空间(留白)
+//    complete  返回浏览器是否已经完成对图像的加载
+
+    // 图片对象事件有三种
+        //1.onload  图片加载成功时触发的事件
+        //2.onerror 图片加载失败时触发的事件
+        //3.onabort 当用户放弃加载时触发的事件
+    //图片的 src 赋值最好放到所有事件之后,因为图片是在给定src之后就开始加载,为了避免图片已经加载出来,但是事件还没来得及执行的极端情况,所以我们一般要把图片src赋值放到最后
+</script>

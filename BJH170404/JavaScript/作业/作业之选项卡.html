@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之选项卡</title>
+    <style>
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 1300px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        li {
+            width: 300px;
+            height: 300px;
+            background: red;
+            border: 1px solid;
+            color: white;
+            float: left;
+            margin: 10px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+
+        }
+
+        p {
+            width: 1268px;
+            height: 322px;
+            position: absolute;
+            top: 340px;
+            left: 18px;
+            float: left;
+            background: red;
+            display: none;
+            text-align: center;
+            line-height: 322px;
+            color: white;
+            font-size: 50px;
+
+        }
+
+        span {
+            width: 20px;
+            height: 20px;
+            border: 10px solid;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+
+        }
+
+        .block {
+            display: block;
+        }
+
+        .none {
+            display: none;
+        }
+        strong{
+
+        }
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li class="oId">这是第一个
+        <p>
+            <strong>这是第一个</strong>
+            <span></span>
+        </p>
+    </li>
+    <li class="oId">这是第二个
+        <p>
+            <strong>这是第二个</strong>
+            <span></span>
+        </p>
+    </li>
+    <li class="oId">这是第三个
+        <p>
+            <strong>这是第三个</strong>
+            <span></span>
+        </p>
+    </li>
+    <li class="oId">这是第四个
+        <p>
+            <strong>这是第四个</strong>
+            <span></span>
+        </p>
+    </li>
+</ul>
+<ul id="box1">
+
+</ul>
+</body>
+</html>
+<script>
+    //var oId = document.getElementsByClassName("oId");
+    var box = document.getElementById("box");
+    var box1 = document.getElementById("box1");
+    var li = box.getElementsByTagName("li");
+    var p = document.getElementsByTagName("p");
+    var span = document.getElementsByTagName("span");
+    var tem = true;
+    for (var i = 0; i < 4; i++) {
+        li[i].index = i;
+        li[i].onclick = function () {
+            for (var k = 0; k < 4; k++) {
+                li[k].style.height = "300px";
+                p[k].className = "none";
+            }
+            this.style.height = "322px";
+            p[this.index].className = "block";
+
+        }
+    }
+    for (var a = 0; a < span.length; a++) {
+        span[a].onclick = function (ev) {
+            for (var s = 0; s < p.length; s++) {
+                p[s].className = "none";
+            }
+            tem = false;
+            if (tem == false) {
+                for (var i = 0; i < li.length; i++) {
+                    li[i].style.height="300px";
+                }
+            }
+            ev.cancelBubble = true;
+        }
+    }
+
+
+</script>

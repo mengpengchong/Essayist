@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+    #item1{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li id="item1">1</li>
+        <li>2</li>
+        <li class="list">3</li>
+        <li class="list">4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <div id="box"></div>
+    <input type="text" value="原来的内容" id="text">
+    <div id="content"></div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    //1.
+    //    console.log($)
+    //    window.onload = function(){
+    //        //等页面加载完毕之后再执行js代码
+    //        //加载的内容包括结构 css文件 图片资源
+              //在一个js文件中只能执行一次
+    //    };
+    $(document).ready(function(){       //等加载完毕后执行
+        //等DOM结构加载完毕就会执行,不会等待图片资源加载
+    });
+    $(function(){
+        //等同于document.ready 这个是简写形式
+    });
+    //子元素选择器
+    console.log($('#box>div'));
+
+    //相邻后兄弟选择器
+    console.log($('#item1+li'));
+
+    //odd 奇数
+    console.log($('li:odd'));
+
+    //传参数是设置 不传参数是获取
+    $("#box").html("你好");
+    console.log($("#box").html());
+
+    console.log($('#text').val());
+    var str = $("#text").val();
+    $("#text").val(str + "这是通过JQ添加的");
+    //设置css样式的第二种方法
+    $("#box").css({
+        "width":"200px",
+        "height":"200px",
+        "background":"yellow"
+    });
+    //获取
+    $("#box").css({
+        "width":function(index,value){
+            return parseInt(value)*4
+        }
+    });
+    //事件
+    $("#content").css({
+        "width":"200px",
+        "height":"200px",
+        "background":"green"
+    }).click(function(){
+        //在事件内直接获取this,获取到的是原生js里面的元素,是不能直接使用JQ提供给我们的方法的
+        //如果想要获取当前元素并且继续通过JQ来操作这个元素的话,需要通过$(this)来获取
+        $(this).css("border","1px solid red")
+    });
+
+//    $("#content").hover(function(){
+//        $(this).css("background","yellow")
+//        },function(){
+//        $(this).css("background","red")
+//    });
+
+//    $("#content").hover(function(){
+//        $(this).css("background","black")
+//    })
+
+    //index()
+//    $("li").hover(function(){
+//        alert($(this).index())
+//    });
+
+    //show()    显示
+    $("#list").click(function(){
+        $("#item1").show().click(function() {
+            $(this).hide()
+        })
+    })
+
+    //toggle() 显示/隐藏
+    $("#box").click(function(){
+        $("#content").toggle()
+    })
+</script>

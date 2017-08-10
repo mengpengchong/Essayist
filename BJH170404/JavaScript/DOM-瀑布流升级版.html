@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+        .wrap{
+            width: 840px;
+            overflow: hidden;
+            padding: 10px;
+            margin: 0 auto;
+            border:1px red solid;
+        }
+        ul{
+            float: left;
+            width: 200px;
+            margin: 0 5px;
+            padding: 0;
+            list-style: none;
+        }
+        li{
+            background: #ccc;
+            margin-bottom: 10px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+</body>
+<script type="text/javascript">
+    // console.log(Math.min(1,24,67,8,3,5));
+    // console.log(Math.min.apply(null,[1,24,67,8,3,5]));
+    // var arr = [1,24,67,8,3,5];
+    // console.log(arr.indexOf(Math.min.apply()));
+
+    var ul = document.getElementsByTagName('ul');
+    var li = document.getElementsByTagName('li');
+    var arr = [];
+    var index = 0;
+    //随机函数
+    function randFn(min,max){
+        return parseInt(Math.random()*(max-min+1)+min);
+    }
+
+    //当页面发生滚动时,判断是否需要创建新的li
+    window.onscroll = function(){
+        var arr = [];//用来保存ul高度
+        var index = 0;//用来保存高度最小的ul的下标
+        var oLi = document.createElement('li');
+        oLi.style.height = randFn(100,300) + "px";
+        oLi.innerHTML = li.length + 1;
+        for (var i = 0; i < ul.length; i++) {
+            arr.push(ul[i].offsetHeight);
+        };
+        //找到高度最小的ul的下标
+        index = arr.indexOf(Math.min.apply(null,arr));
+        // ul[index].appendChild(oLi);
+
+        var iHeight = scrollY() + clientY();//页面的高度
+        var height = ul[index].offsetHeight;//最小的ul的高度
+
+        if(height <= iHeight){//判断当最小的ul高度即将小于页面高度时，意味着应加载新的li进来
+            for (var i = 0; i < 5; i++) {
+                createLi();
+            };
+        }
+    }
+    //生成li
+    function createLi(){
+        var arr = [];//用来保存ul高度
+        var index = 0;//用来保存高度最小的ul的下标
+        var oLi = document.createElement('li');
+        oLi.style.height = randFn(100,300) + "px";
+        oLi.innerHTML = li.length + 1;
+        for (var i = 0; i < ul.length; i++) {
+            arr.push(ul[i].offsetHeight);
+        };
+        //找到高度最小的ul的下标
+        index = arr.indexOf(Math.min.apply(null,arr));
+        ul[index].appendChild(oLi);
+
+    }
+    for (var i = 0; i < 20; i++) {
+        createLi();
+    };
+
+
+    //返回页面滚动高度
+    function scrollY(){
+        return document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+    //返回窗口可视区域的高度
+    function clientY(){
+        return document.documentElement.clientHeight || window.innerHeight;
+    }
+
+
+
+    /*
+     //页面滚动时触发的事件
+     window.onscroll = function(){
+     console.log(document.body.scrollTop);
+     }
+     获取页面滚动高度
+     1.document.body.scrollTop 谷歌和Safari
+     2.document.documentElement.scrollTop 其他浏览器
+     */
+</script>
+</html>

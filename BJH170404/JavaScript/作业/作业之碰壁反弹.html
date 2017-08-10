@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之碰壁反弹</title>
+    <style>
+        div{
+            height:500px;
+            width:800px;
+            border:1px solid;
+            margin: 100px auto;
+            position: relative;
+        }
+        p{
+            width:40px;
+            height:40px;
+            background: goldenrod;
+            border-radius: 50%;
+            position: absolute;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+    </div>
+</body>
+</html>
+<script>
+        var div = document.getElementsByTagName("div")[0];
+        var p = document.getElementsByTagName("p")[0];
+        var maxWidth = div.offsetWidth - p.offsetWidth;
+        var maxHeight = div.offsetHeight - p.offsetHeight;
+        var oTop = p.offsetTop;
+        var oLeft = p.offsetLeft;
+        var timer = null;
+        var speedY = 3;
+        var speedX = 1;
+
+        function move(){
+            oTop += speedY;
+            oLeft += speedX;
+            if(oTop >= maxHeight){
+                speedY *= -1;
+            }else if(oTop <= 0){
+                speedY *= -1
+            }
+            if(oLeft >= maxWidth){
+                speedX *= -1;
+            }else if(oLeft <= 0){
+                speedX *= -1
+            }
+            p.style.top = oTop + "px";
+            p.style.left = oLeft + "px";
+        }
+
+        function time(){
+            timer = setInterval(function(){
+                move();
+            },10)
+        }
+        time();
+
+
+</script>

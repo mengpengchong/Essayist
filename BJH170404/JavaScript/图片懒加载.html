@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ol{
+            width: 500px;
+            margin: 0 auto;
+        }
+        li{
+            height: 300px;
+            margin-top: 300px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<ol>
+    <li><img data-src="http://pic.58pic.com/58pic/15/14/82/76T58PICyAp_1024.jpg" alt=""></li>
+    <li><img data-src="http://pic.58pic.com/58pic/15/14/82/76T58PICyAp_1024.jpg" alt=""></li>
+    <li><img data-src="http://pic.58pic.com/58pic/15/14/82/76T58PICyAp_1024.jpg" alt=""></li>
+    <li><img data-src="http://pic.58pic.com/58pic/15/14/82/76T58PICyAp_1024.jpg" alt=""></li>
+    <li><img data-src="http://pic.58pic.com/58pic/15/14/82/76T58PICyAp_1024.jpg" alt=""></li>
+</ol>
+</body>
+<script>
+    var li = document.getElementsByTagName('li');
+
+    window.onscroll = function(){
+        for (var i = 0; i < li.length; i++) {
+            var img = li[i].getElementsByTagName('img')[0];
+
+            if(li[i].offsetTop <= (scrollTop() + clientHeight()) && img.getAttribute("data-src")){
+                console.log(clientHeight());
+                img.src = img.getAttribute("data-src");
+                img.removeAttribute("data-src");
+            }
+        }
+    };
+    //页面滚动高度
+    function scrollTop(){
+        return document.documentElement.scrollTop || document.body.scrollTop
+    }
+    //窗口可视区域高度
+    function clientHeight(){
+        return document.documentElement.clientHeight || window.innerHeight
+    }
+
+
+
+</script>
+</html>

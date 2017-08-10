@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM表格</title>
+    <style>
+        a{
+            color:rgb(66,96,110);
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:underline;
+            color: cornflowerblue;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color: rgb(66,96,110);
+            margin-top: 40px;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            background: rgb(244,244,244);
+        }
+        #box{
+            width:75%;
+
+            border:1px solid lightgray;
+            margin:150px auto;
+            background: white;
+            padding: 20px;
+        }
+        input{
+            height:20px;
+            width:150px;
+            padding: 5px;
+            border-radius: 5px;
+            border:1px solid lightgray;
+            color: gray;
+            outline: none;
+        }
+        button{
+            background: cornflowerblue;
+            color: white;
+            border:1px solid cornflowerblue;
+            border-radius: 5px;
+            padding: 8px;
+        }
+        span{
+            color: rgb(70,84,105);
+        }
+        table{
+            border-collapse: collapse;
+            text-align: left;
+            color: rgb(66,96,110);
+            margin-top:40px;
+            border:1px solid lightgray;
+        }
+        th,td{
+            width:400px;
+            height:35px;
+            transition: 1s all;
+        }
+        .move{
+            cursor: pointer;
+        }
+        .end{
+            margin-top:30px;
+        }
+        .ap{
+            background: yellow;
+        }
+        .ad{
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <span>添加:</span>
+        <input type="text" placeholder="姓名" id="test">
+        <input type="text" placeholder="年龄" id="test1">
+        <button id="btn" >添加</button>
+        <span>变色:</span>
+        <button id="Ondis">开启移入变色</button>
+        <table border="1" id="tableE">
+            <thead>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th class="move">操作</th>
+            </thead>
+            <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>33</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李四</td>
+                <td>34</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>25</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>赵六</td>
+                <td>16</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>王四</td>
+                <td>44</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Danny</td>
+                <td>23</td>
+                <td class="move">
+                    <a href="###">删除</a>
+                </td>
+            </tr>
+        </table>
+        <div class="end">
+            <span>搜索</span>
+            <input type="text" placeholder="姓名" id="content">
+            <button id="search">搜索</button>
+            <span>排序</span>
+            <button>年龄从小排序</button>
+            <p>数组里存的是所有tr，排序的时候按照第三个单元格的innerHTML大小排序。最后按照新的顺序重新添加所有tr。</p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var Ondis = document.getElementById("Ondis");
+    var test = document.getElementById("test");
+    var search = document.getElementById("search");
+    var tableE = document.getElementById("tableE");
+    var content = document.getElementById("content");
+    var test1 = document.getElementById("test1");
+    var tr = document.getElementsByTagName("tr");
+    var table = document.getElementsByTagName("table")[0];
+    var tt = 0;
+    function onColor(){
+        Ondis.onclick = function(){
+            if(this.innerHTML == "开启移入变色"){
+                this.style.background = "red";
+                this.innerHTML = "关闭移入变色";
+                move2()
+            }else if(this.innerHTML == "关闭移入变色"){
+                this.style.background = "";
+                this.innerHTML = "开启移入变色";
+                move1()
+
+            }
+        };
+    }
+
+    //移入变色
+    function move2(){
+        for(var i = 0;i < tr.length;i++){
+            tr[i].onmouseover = function(){
+                this.style.background = "yellow";
+            };
+            tr[i].onmouseout = function(){
+                this.style.background = "";
+            }
+        }
+    }
+    //移入没色
+    function move1(){
+        var tr = document.getElementsByTagName("tr");
+        for(var i = 0;i < tr.length;i++) {
+            tr[i].onmouseover = function () {
+                this.style.background = "";
+            };
+        }
+    }
+    //添加
+    function appendTest(){
+        btn.onclick = function(){
+            if(test.value == "" || test1.value == "") {
+                alert("必须输入姓名和年龄");
+            }else{
+                var oTr = document.createElement("tr");
+                var oTd = document.createElement("td");
+                oTr.appendChild(oTd);
+                oTd.innerHTML = tt++ +7;
+                var oTd = document.createElement("td");
+                oTr.appendChild(oTd);
+                oTd.innerHTML = test.value;
+                var oTd = document.createElement("td");
+                oTr.appendChild(oTd);
+                oTd.innerHTML = test1.value;
+                var oTd = document.createElement("td");
+                oTd.innerHTML = "<a href='###'>删除</a>";
+                oTr.appendChild(oTd);
+                table.tBodies[0].appendChild(oTr);
+                aDelTr(tableE.tBodies[0]);
+                if(Ondis.innerHTML == "关闭移入变色"){
+                    move1();
+                    move2();
+                }
+
+            }
+        };
+    }
+    //删除
+    function aDelTr(obj){
+        var a = obj.getElementsByTagName('a');
+        for(var i = 0;i < a.length;i++){
+            a[i].onclick = function (){
+                obj.removeChild(this.parentNode.parentNode);
+            }
+        }
+    }
+
+    //搜索
+    function SearchE(){
+        search.onclick = function(){
+            if(content.value == ""){
+                alert("请输入正确内容")
+            }else{
+                for (var i = 0; i < tableE.tBodies[0].rows.length; i++){
+                    var sTable = tableE.tBodies[0].rows[i].cells[1].innerHTML.toLocaleLowerCase();
+                    var sText = content.value.toLocaleLowerCase();
+                    if(sTable.search(sText) != -1){
+                        tableE.tBodies[0].rows[i].className = "ap";
+                    }else{
+                        tableE.tBodies[0].rows[i].className = "ad";
+                    }
+                }
+            }
+        }
+    }
+    onColor();
+    SearchE();
+    appendTest();
+    aDelTr(tableE.tBodies[0]);
+
+
+
+</script>

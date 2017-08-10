@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #box{
+            width: 300px;
+            height: 300px;
+            position: relative;
+            border: 1px solid red;
+        }
+        #box img{
+            width: 300px;
+            height: 300px;
+        }
+        .div{
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            background: yellow;
+            opacity: 0.5;
+            display: none;
+        }
+        #max{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            overflow: hidden;
+            position: relative;
+            left: 320px;
+            top: -301px;
+            display: none;
+
+        }
+        #max img{
+            width: 900px;
+            height: 900px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="http://b.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=6046b2f46509c93d07a706f3aa0dd4ea/4a36acaf2edda3ccd58840da03e93901203f92d8.jpg">
+    <div class="div"></div>
+</div>
+<div id="max">
+    <img src="http://b.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=6046b2f46509c93d07a706f3aa0dd4ea/4a36acaf2edda3ccd58840da03e93901203f92d8.jpg">
+</div>
+</body>
+<script type="text/javascript">
+    var box = document.getElementById('box');
+    var pic = document.getElementsByTagName('img')[1];
+    var div = document.getElementsByClassName('div')[0];
+    var l,t;//保存比例关系;
+    box.onmouseover = function(){
+        div.style.display = "block";
+        max.style.display = "block"
+    }
+    box.onmouseout = function(){
+        // document.onmousemove = null;
+        div.style.display = "none";
+        max.style.display = "none"
+    }
+    box.onmousemove = function(){
+        var w = box.offsetWidth - div.offsetWidth;
+        var h = box.offsetHeight - div.offsetHeight;
+        var l = (event.clientX - box.offsetLeft - 45) / w;
+        var t = (event.clientY - box.offsetTop - 45) / h;
+        if(l <= 0){
+            l = 0;
+        }else if(l >= 1){
+            l = 1;
+        }
+        if (t <= 0) {
+            t = 0;
+        }else if(t >= 1){
+            t = 1;
+        }
+        pic.style.left = -(pic.offsetWidth - max.offsetWidth) * l + "px";
+        pic.style.top = -(pic.offsetHeight - max.offsetHeight) * t + "px";
+
+        div.style.left = event.clientX - box.offsetLeft + "px";
+        div.style.top = event.clientY - box.offsetTop  + "px";
+
+        if (div.offsetTop <=0) {
+            div.style.top = 0 + "px";
+        }else if (div.offsetTop >= h) {
+            div.style.top = h + "px";
+        };
+        if (div.offsetLeft <=0) {
+            div.style.left = 0 + "px";
+        }else if (div.offsetLeft >= w) {
+            div.style.left = w + "px";
+        };
+    }
+    var max = document.getElementById('max');
+</script>
+</html>

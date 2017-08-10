@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //join()把数组转换成字符串
+    var arr = [1,2,3,4];
+    console.log(arr.join("").length);
+    //join()方法可以接受参数,表示以这个指定的参数进行字符串分割
+    console.log(arr.join("0"));
+
+    //2.reverse() 将字符串逆序  会修改原数组
+    var arr = ["你好","你好吗","你很好吗"];
+    console.log(arr.reverse());
+
+
+    //3.sort() 将数组排序  会改变原数组
+    var arr = [1,5,7,8,3,12,61];
+    console.log(arr.sort(desc));
+    //sort()方法如果想按照从大到小或者从小到大的方式排序,需要我们传递参数,参数的形式是函数
+    function asce(a,b){
+        return a-b; //升序
+
+    }
+    function desc(a,b){
+        return b-a; //降序
+    }
+
+    //4.concat() 将数组合并
+    //concat()方法参数可以是数字,也可以是数组,如果是一维数组的话,会把合并数组拉伸,跟原数组合并为同一个数组.但如果是二维数组或者多维数组的话,只会将合并数组的第一层拉伸合并,保留内层的数组
+    //这个方法不会修改原数组
+    var arr = [1,2,3];
+    console.log(arr.concat(3,7,3)); //也可以传递一个数组(只能是一维数组)
+
+    //5.slice() 返回数组的某一部分   不会改变原数组
+    //第一个参数:表示开始截取的位置
+    //第二个参数:表示截取到的位置,前闭后开
+    var arr2 = ["123","456","789","1","2","3"];
+    console.log(arr2.slice(2,4));
+    //当只有一个参数时,这个参数表示开始截取的下标位置,一直截取到数组的最后一项
+
+    //6.splice() 数组拼接   会改变原数组
+    //第一个参数:表示插入的下标位置.
+    //第二个参数:表示删除多少项.
+    //第三个参数:表示插入的内容.
+    var arr3 = ["this","is","very","boring","thing"];
+    console.log(arr3.splice(3,0,"very"));
+    console.log(arr3);
+
+    //7.pop() 移除数组中的最后一个元素并返回该元素
+    var arr4 = [1,2,3,4,5,6];
+    console.log(arr4.pop(),arr4);
+
+    //8.shift() 移除数组中的第一个元素并返回该元素
+    var arr5 = [1,2,3,4,5,6,7];
+    console.log(arr5.shift(),arr5);
+
+    //9.push 往数组的最后添加一项内容 返回的是新数组的长度 (会改变原数组)
+    var arr6 = ["this","is","a","beauty"];
+    console.log(arr6.push("gril"));
+    console.log(arr6);
+
+    //10.unshift() 往数组的第一项添加内容 返回新数组的长度 (会改变原数组)
+    var arr7 = [1,2,3,4,5,6,7];
+    console.log(arr7.unshift(0));
+    console.log(arr7);
+
+    //11.indexOf() 检测数组是否包含某一项内容,如果是,则返回下标,如果没有,返回-1.
+    var arr8 = ["蒙芃憧","赵岗","白鹏飞"];
+    console.log(arr8.indexOf("不存在的"));
+
+    //12.lastIndexOf() 跟indexOf类似, 从后往前查找
+    //如何生成一个长度为10,范围在10-50之间的随机不重复数组
+
+
+</script>

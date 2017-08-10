@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding:0;
+            font-size: 20px;
+        }
+        p{
+            margin:20px 0 20px 40px;
+            padding:0;
+        }
+        .is{
+            margin:-20px 0 0 20px ;
+            width:200px;
+            /*border:1px solid;*/
+        }
+        .that{
+            /*border:1px solid;*/
+            display: none;
+        }
+        span{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <span>+</span>
+    <div class="is">职业</div>
+    <div class="that">
+        <p>歌手</p>
+        <p>演员</p>
+        <p>外卖员</p>
+    </div>
+    <span>+</span>
+    <div class="is">工作</div>
+    <div class="that">
+        <p>游戏</p>
+        <p>编程</p>
+        <p>卖大饼</p>
+    </div>
+    <span>+</span>
+    <div class="is">规划</div>
+    <div class="that">
+        <p>上班</p>
+        <p>挣钱</p>
+        <p>睡大觉</p>
+    </div>
+
+</body>
+</html>
+<script>
+    var span = document.getElementsByTagName("span");
+    var div = document.getElementsByClassName("that");
+    var bool = true;
+    for(var i =0; i < span.length;i++){
+        span[i].onclick = function(){
+            if(this.innerHTML == "+"){
+                this.nextElementSibling.nextElementSibling.style.display = "block";
+                this.innerHTML = "--";
+            }else{
+                this.nextElementSibling.nextElementSibling.style.display = "none";
+                this.innerHTML = "+";
+            }
+
+        }
+
+
+    }
+</script>

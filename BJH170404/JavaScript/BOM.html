@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--用于刷新页面 content后面跟的数为几秒刷新一次
+    <!--<meta http-equiv="refresh" content="1">-->
+    <!--后面如果跟着url 那么就是3秒后跳转到百度-->
+    <meta http-equiv="refresh" content="3;url = https://www.baidu.com">
+    <title>Title</title>
+    <style></style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //BOM browser object model 浏览器对象模型
+    //浏览器窗口可是区域宽高
+//    document.documentElement.clientWidth || window.innerWidth
+
+//    window.innerWidth && window.innerHeight 是窗口可视区域(不包括界面元素,工具栏,滚动条)
+
+//    window.outerWidth && window.outerHeight 是包括界面元素,工具栏,滚动条
+
+//    screen.availHeight && screen.availWidth   可用屏幕高度和宽度
+
+//    screenLeft && screenTop   窗口距离屏幕的左边距和上边距(不支持火狐,在火狐下用:screenX,screenY)
+
+//    screen.width &&  screen.height   屏幕的宽度和高度
+
+    //弹出框   (\n换行)
+        //1.alert("我是弹出框")
+        //2.confirm() 试用于疑问和判断 会返回布尔值true和false
+        //3.prompt()  弹出框自带输入框
+
+    // window.open()    如果是当前窗口打开的话,定义的宽高无效
+    // 当window.open()直接调用的时候,浏览器默认会进行拦截
+        //参数1:网址
+        //参数2:打开方式
+        //参数3:新窗口的宽高
+
+//    var str = navigator.userAgent;
+//    if(str.toLowerCase().indexOf("firefox") != -1){
+//        alert("你用的是火狐")
+//    }else if(str.toLowerCase().indexOf("chrome") != -1){
+//        alert("你用的是谷歌")
+//    }else if(str.toLowerCase().indexOf("safari") != -1){
+//        alert("你用的是s")
+//    }
+
+    //函数里的this和定时器里的this始终指向window
+//    var a = 10;
+//    function a1(){
+//        console.log(this)
+//    }
+//    console.log(window)
+
+    document.onclick = function(){
+
+//        location.href = "https://www.baidu.com";    //网页的完整路径 可读可写
+
+//        location.assign("https://www.baidu.com");   //
+
+//        location.replace("https://www.baidu.com");  //不会产生历史记录,不能后退到前一个页面
+//        location.reload() 可以传递一个参数 true 表示绕过缓存,从服务器重新加载 如果不写参数的话,有可能会从缓存中加载
+//        location.reload()
+
+    };
+
+    console.log(location);
+    //hash值,是一个可读可写的字符串 用途是记录页面的状态
+    console.log(location.hash);  //结果什么也没有
+    location.hash = "hahaha";
+    //search 地址栏中 ? 之后的内容
+
+    //history.back();只能回退到之前的一个页面,
+    //history.go(); 可以传递参数,如果是正数的话,意味着前进,负数意味后退,数字是几,就前进或后退几
+
+
+
+
+
+
+
+</script>

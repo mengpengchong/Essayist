@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    #box2{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input type="button" value="点我" >
+    <input type="button" value="btn" >
+    <input type="button" value="btn1" >
+    <div id="box"></div>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //on()
+    function fn1(){
+//        console.log(2)
+    }
+    $("div").css({
+        'width':'200',
+        'height':'200',
+        'background':'red',
+        'margin':'10px'
+    }).on('click',fn1,function(){
+//        alert($(this).width())
+    });
+
+    //所有需要传递给事件处理函数的参数都是以属性的形式保存在event.data对象下面,所以在事件处理函数中,直接通过属性调用的形式就可以获取
+    $("input").eq(1).on('click',function(){
+        var str = $('input').eq(0).val();
+        $("#box").on('click',{str : str},fn2)
+    });
+    function fn2(event){
+        $(this).html(event.data.str)
+    }
+    //on() 方法可以给同一个元素绑定多次相同事件,按绑定的先后顺序执行
+    //off() 方法不传递参数的时候,默认移除选中元素身上的所有事件
+    //当只传递一个事件名做参数时,表示移除该事件所有的事件处理函数
+    $("#box1").mouseover(function(){
+        console.log(11)
+    });
+    $("#box1").off('mouseover');
+
+    //当传递两个参数时,
+
+    //参数1:动画过渡时间    参数2:动画过渡效果函数    参数3:动画结束后执行的回调函数
+    $('input').eq(2).click(function(){
+        $("#box2").show(1000,'linear',function(){
+                console.log(2)
+            }).click(function(){
+                $(this).hide(1000,function(){
+                    console.log(1)
+            })
+        })
+    });
+
+    $("input").eq(3).click(function(){
+        $("#box2").stop()
+    });
+
+
+</script>

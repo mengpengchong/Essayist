@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: relative;
+        }
+        .copy{
+            width: 200px;
+            height: 200px;
+            border:1px solid;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
+<script>
+    var box = document.getElementById("box");
+    var body = document.getElementsByTagName("body")[0];
+    box.onmousedown = function(event){
+        var disX = event.clientX - this.offsetLeft;
+        var disY = event.clientY - this.offsetTop;
+        var event = event ||window.event;
+        var p = document.createElement("p");
+        p.className = "copy";
+        p.style.left = box.offsetLeft + "px";
+        p.style.top = box.offsetTop + "px";
+        document.body.appendChild(p);
+        document.onmousemove = function(event){
+            p.style.left = event.clientX - disX + "px";
+            p.style.top = event.clientY - disY + "px";
+        };
+        document.onmouseup = function (event) {
+            box.style.left = p.style.left;
+            box.style.top = p.style.top;
+            document.body.removeChild(p);
+            document.onmousemove = null;
+        };
+
+    }
+</script>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            color: white;
+            background: red;
+            text-align: center;
+            line-height: 200px;
+            font-size: 30px;
+            position: absolute;
+            display: none;
+        }
+        .on{
+            display: block;
+        }
+        .active{
+            background: pink;
+        }
+
+    </style>
+</head>
+<body>
+<input type="button" value="btn1">
+<input type="button" value="btn2">
+<input type="button" value="btn3">
+<div>我是第一个</div>
+<div>我是第二个</div>
+<div>我是第三个</div>
+</body>
+</html>
+<script>
+    var btn = document.getElementsByTagName("input");
+    var div = document.getElementsByTagName("div");
+    for(var i = 0;i < btn.length;i++){
+        //找到当前点击按钮的下标就是需要显示的div的下标
+        btn[i].index = i;
+        btn[i].onclick = function(){
+            for(var i = 0; i < btn.length;i++){
+                btn[i].className = "";
+                div[i].className = "";
+            }
+            this.className = "active";
+            div[this.index].className = "on";
+
+        }
+    }
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    	#box{
+    		height: 200px;
+    		width: 200px;
+    		background: gold;
+    		position: absolute;
+    	}
+        #box1{
+            height: 200px;
+            width: 200px;
+            background: red;
+            position: absolute;
+        }
+        #box3{
+            height: 200px;
+            width: 200px;
+            background: red;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<input type="button" value="点我" id="btn">
+	<div id="box"></div>
+    <div id="box1"></div>
+    <div id="box3"></div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+    //Tween.js 是一个JS动画库
+    //要使用tween.js,必不可少的四个参数
+        //t current time 当前时间
+        //b beginning value 初始值remove
+        //c change value 变化量
+        //d duration 持续时间
+        var timer = null;
+        var box = document.getElementById("box");
+        function go(){
+        	var t = 0;	//当前时间
+        	var b = box.offsetLeft;	//初始值
+        	var c = 600 - b;	//变化量 = 目标值 - 初始值0
+        	var d = 50;
+        	timer = setInterval(function(){
+        		t++;
+        		if(t >= d){	//t最多只能等于d
+        			clearInterval(timer);
+        		}
+        		box.style.left = Tween.Circ.easeIn(t,b,c,d) + "px";
+        	},20)
+        }
+        go();
+
+
+
+    var timer1 = null;
+    var t = 0;
+    var b = box.offsetLeft;
+    var c = 400 - b;
+    var d = 50;
+
+    var e = 400 - b;
+    var r = 20;
+    btn.onclick = function(){
+        clearInterval(timer1);
+        timer = setInterval(function(){
+            t++;
+            if(t >=d && t >=r){
+                clearInterval(timer1);
+            }
+            box1.style.left = Tween.Circ.easeIn(t,b,c,d) + "px";
+            box1.style.top = Tween.Circ.easeOut(t,b,e,r) + "px";
+        },10)
+    };
+
+
+    var box3 = document.getElementById("box3");
+    //    console.log(getComputedStyle(box).paddingLeft);
+    //    console.log(getComputedStyle(box)["width"]);
+    //    console.log(box.offsetWidth);
+    //获取元素计算后样式 返回的是字符串 获取到的是元素css中设置的宽度    (只适应标准浏览器)
+    //1.getComputedStyle(元素,false)
+
+    //防止IE兼容性问题
+    function getCss(obj,attr){
+        return obj.currentStyle ? obj.getCurrentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+</script>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nonthing</title>
+    <style>
+        #box{
+            width:200px;
+            height:200px;
+            background: red;
+            color: white;
+            font-size: 50px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .close{
+            display: none;
+        }
+        .open{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="btn" value="按钮">
+    <div id="box" class="op"></div>
+</body>
+</html>
+<script>
+    //    innerHTML 获取设置元素内容
+    //    通过innerHTML和value获取到的内容的数据类型都是string类型
+    //    引号嵌套遵循里但外双或者外单里双的规则
+    //    通过className添加的类名会把原来的覆盖掉
+
+    //    var box = document.getElementById("box");
+    //    div1.onclick = function(){
+    //        if(div.value){
+    //            box.innerHTML = div.value;
+    //        }else{
+    //            alert("请输入内容");
+    //        }
+    //    }
+
+
+
+    var bool = true;
+    btn.onclick = function(){
+        if(bool){
+            box.className = "close test";
+            bool = false;
+        }else{
+            box.className = "open test";
+            bool = true;
+        }
+    }
+</script>

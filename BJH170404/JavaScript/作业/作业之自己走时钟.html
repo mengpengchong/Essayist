@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之自己走时钟</title>
+    <style>
+        #box{
+            height:400px;
+            width:400px;
+            border:1px solid;
+            border-radius: 50%;
+            position: relative;
+            left:600px;
+            top:100px;
+        }
+        span{
+            display: block;
+            position: absolute;
+        }
+        #box span:nth-child(1){
+            height:150px;
+            width:3px;
+            border:1px solid;
+            top:200px;
+            left:200px;
+        }
+        #box span:nth-child(2){
+            height:100px;
+            width:3px;
+            border:1px solid;
+            top:200px;
+            left:200px;
+        }
+        #box span:nth-child(3){
+            height:70px;
+            width:3px;
+            border:1px solid;
+            top:200px;
+            left:200px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+
+</html>
+<script>
+    var str = "";
+    var str1 = "";
+
+    for(var i = 0; i <= 12;i++){
+
+        str +="<div><p>" + i + "</p>";
+
+        box.innerHTML = str;
+    }
+    var p = document.getElementsByTagName("p");
+    var div = document.getElementsByTagName("div");
+    for (var k = 0; k < p.length; k++) {
+        var rot = i * 30;
+        p[k].style.transform = "rotate( "+ rot +"deg )";
+        div[k].style.transform = "rotate( "+ (-rot) +"deg )";
+    }
+</script>

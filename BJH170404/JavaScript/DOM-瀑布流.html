@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .wrap{
+            width:840px;
+            overflow: hidden;
+            padding: 10px;
+            margin:0 auto;
+            border:1px solid;
+        }
+        ul{
+            float: left;
+            width:200px;
+            margin: 0 5px;
+            list-style: none;
+            padding: 0;
+        }
+        li{
+            height:300px;
+            background: #ccc;
+            margin-bottom: 10px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+</body>
+</html>
+<script>
+    var ul = document.getElementsByTagName("ul");
+    var li = document.getElementsByTagName("li");
+    function randNum(min,max){
+        return parseInt(Math.random() * (max - min + 1) + min);
+    }
+    //生成li
+    function createLi(){
+        var arr = [];   //用来保存ul的高度
+        var index = 0;  //用来保存ul的下标
+        var oLi = document.createElement("li");
+        oLi.style.height = randNum(100,300) + "px";
+        oLi.innerHTML = li.length + 1;
+        for(var i = 0;i <ul.length;i++){
+            arr.push(ul[i].offsetHeight);
+        }
+        //找到最小高度ul的下标
+        index = arr.indexOf(Math.min.apply(null,arr));
+        ul[index].appendChild(oLi);
+    }
+    for(var i = 0;i < 10;i++){
+        createLi();
+    }
+
+
+</script>

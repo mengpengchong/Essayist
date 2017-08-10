@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            height:500px;
+            width:700px;
+            margin-left: 500px;
+            overflow: hidden;
+        }
+        #box img{
+            height:1000px;
+            width:1400px;
+            position: relative;
+        }
+        #content{
+            width:700px;
+            height:50px;
+            background: wheat;
+            position: relative;
+            left:500px;
+        }
+        p{
+            margin: 0;
+            height:50px;
+            width:50px;
+            background: red;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="img/fengguang1.jpg" alt="">
+</div>
+<div id="content">
+    <p></p>
+</div>
+</body>
+</html>
+<script>
+    var content = document.getElementById("content");
+    var box = document.getElementById("box");
+    var p = content.getElementsByTagName("p")[0];
+    var img = box.getElementsByTagName("img")[0];
+    p.onmousedown = function(event){
+        var event = event || window.event;
+        var disX = event.clientX - p.offsetLeft;
+        document.onmousemove = function(event){
+            p.style.left = event.clientX - disX + "px";
+            if(p.offsetLeft <= 0){
+                p.style.left = 0;
+            }else if(p.offsetLeft >= 650){
+                p.style.left = "650px";
+            }
+            var l = p.offsetLeft / (content.offsetWidth - p.offsetWidth);
+            img.style.left = -l * (img.offsetWidth - box.offsetWidth) + "px";
+        };
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        };
+        return false;   //阻止事件的默认行为 避免出现选中的效果
+    }
+
+</script>

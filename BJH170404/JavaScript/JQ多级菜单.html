@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 25px;
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding-left:0;
+            color: cornflowerblue;
+        }
+        span:nth-of-type(odd){
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            /*border: 1px #000 solid;*/
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        ol{
+            display: none;
+            color: red;
+            padding-left:80px;
+        }
+        .two{
+            display: none;
+            padding-left: 40px;
+            color: mediumpurple;
+        }
+        li{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span>+</span>
+        <span>一级标题</span>
+        <ul class="two">
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>+</span>
+        <span>一级标题</span>
+        <ul class="two">
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>+</span>
+        <span>一级标题</span>
+        <ul class="two">
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+            <li>
+                <span>+</span>
+                <span>二级标题</span>
+                <ol>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                    <li>三级标题</li>
+                </ol>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $("span:even").click(function(){
+        $(this).next().next().toggle()
+    })
+</script>
+</html>

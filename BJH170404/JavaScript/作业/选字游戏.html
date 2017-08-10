@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选字游戏</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        ul{
+            margin: 0;
+            padding:0;
+            list-style: none;
+        }
+        p{
+            margin: 0;
+        }
+        .box{
+            height:500px;
+            width:400px;
+            background: rgb(212,214,217);
+            padding: 10px;
+            margin: 0 auto;
+        }
+        #RemainingTime{
+            font-size: 24px;
+            float: left;
+        }
+        #finish{
+            font-size: 24px;
+            float: right;
+        }
+        .clear{
+            clear: both;
+
+        }
+        #changeWord{
+            font-size: 100px;
+            width:100px;
+            margin: 80px 0 0 150px;
+            color: red;
+            cursor: pointer;
+        }
+        #fixedWord{
+            font-size: 24px;
+            padding:30px;
+        }
+        .bottomWord{
+            font-size: 60px;
+            float: left;
+            padding: 100px 0 0 16px;
+            cursor: pointer;
+        }
+        ul li:nth-child(1){
+            color: green;
+        }
+        ul li:nth-child(2){
+            color: black;
+        }
+        ul li:nth-child(3){
+            color: red;
+        }
+        ul li:nth-child(4){
+            color: blue;
+        }
+        ul li:nth-child(5){
+            color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p id="RemainingTime">剩余时间: 10</p>
+        <p id="finish">完成: 0</p>
+        <div class="clear"></div>
+        <div id="changeWord"></div>
+        <p id="fixedWord">根据上面的字的颜色从下面选择正确的字，选择正确自动开始</p>
+        <ul>
+            <li class="bottomWord">蓝</li>
+            <li class="bottomWord">黄</li>
+            <li class="bottomWord">红</li>
+            <li class="bottomWord">绿</li>
+            <li class="bottomWord">黑</li>
+        </ul>
+
+    </div>
+</body>
+</html>
+<script>
+    var RemainingTime = document.getElementById("RemainingTime");
+    var changeWord = document.getElementById("changeWord");
+    var finish = document.getElementById("finish");
+    var list = document.getElementsByTagName("li");
+    var timer = null;
+    var randomWord = ["蓝","黄","红","绿","黑"];
+    var randomColor = ["blue","yellow","red","green","black"];
+    var randomWord1 = ["蓝","黄","红","绿","黑"];
+    var randomColor1 = ["blue","yellow","red","green","black"];
+    var num = 10;
+    var num1 = 0;
+
+    function anyTime(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            num--;
+            console.log(num);
+            RemainingTime.innerHTML = "剩余时间: " + num;
+            if(RemainingTime.innerHTML <=  "剩余时间: " + 0){
+                num = 0;
+                return clearInterval(timer);
+
+            }
+        },800)
+    }
+        function randNumber(){
+            return parseInt(Math.random() * 5);
+         }
+    function randBetweenWord(){
+        var fontIndex = randNumber();
+        changeWord.innerHTML = randomWord[fontIndex];
+        var colorIndex = randNumber();
+        changeWord.style.color = randomColor[colorIndex];
+    }
+    randBetweenWord();
+    function bottomRandWordIndex(){
+       var arr = [];
+        while(arr.length < 5){
+            var num = randNumber(0,4);
+            if(arr.indexOf(num) == -1){
+                arr.push(num);
+            }
+        }
+        for(var i=0;i<5;i++){
+            list[i].innerHTML = randomWord[arr[i]];
+        }
+        var arr2 = [];
+        while(arr2.length < 5){
+            var num3 = randNumber(0,4);
+            if(arr2.indexOf(num3) == -1){
+                arr2.push(num3);
+            }
+        }
+        for(var l=0;l<5;l++){
+            list[l].style.color = randomColor[arr2[l]];
+        }
+    }
+    function Score(){
+        num1 +=10;
+        finish.innerHTML ="完成: " +  num1;
+    }
+    function bottomRandWord(){
+        for(var i = 0;i < list.length;i++){
+            list[i].onclick = function(){
+                anyTime();
+                if(randomWord1.indexOf(this.innerHTML)==randomColor1.indexOf(changeWord.style.color)){
+                    bottomRandWordIndex();
+                    randBetweenWord();
+                    Score();
+                }
+            }
+        }
+    }
+    bottomRandWord();
+
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * { margin:0; padding:0;}
+        #outer { position:relative; width:320px; height:480px; background:url("锅打灰太狼img/game_bg.jpg") 0 0 no-repeat; margin:50px auto 0;}
+        #score_box { position:absolute; top:13px; left:65px; font-weight:bold; font-size:16px; color:white;}
+        #progress_bar { position:absolute; top: 66px; left: 63px; width:180px; height:16px; background:url("锅打灰太狼img/progress.png") 0 0 no-repeat; }
+        #wolf_box img { position:absolute; }
+        #menu { position:absolute; top:200px; left:0; width:320px; text-align:center;}
+        #start,
+        #handle,
+        #gameOver { display:block; line-height:50px; font-size:30px; font-weight:bold; color:#F60; text-shadow:0 0 5px #FFFF00; text-decoration:none;}
+        #gameOver { position:absolute; top:150px; left:0; width:320px; text-align:center; display:none;}
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="score_box">0</div><!--这是分数-->
+    <div id="progress_bar"></div><!--倒计时进度条-->
+    <div id="wolf_box"></div><!-- 狼的容器 -->
+    <div id="menu">
+        <a href="javascript:;" id="start">开始</a>
+        <a href="javascript:;" id="handle">游戏操作说明</a>
+    </div>
+    <div id="gameOver">game over!</div>
+    <div id="again" style="display: none;">再来一次</div>
+</div>
+</body>
+<script>
+    var scoreBox = document.getElementById('score_box');//积分器
+    var progressBar = document.getElementById('progress_bar');//进度条
+    var wolfBox = document.getElementById('wolf_box');//狼的容器
+    var menu = document.getElementById('menu');
+    var start = document.getElementById('start');//开始按钮
+    var gameOver = document.getElementById('gameOver');
+    var isPlay = false;//默认游戏未开始
+    var createWolfTimer = null;
+    //狼出现的位置
+    var posArr = [
+        {left:"98px",top:"115px"},
+        {left:"17px",top:"160px"},
+        {left:"15px",top:"220px"},
+        {left:"30px",top:"293px"},
+        {left:"122px",top:"273px"},
+        {left:"207px",top:"295px"},
+        {left:"200px",top:"211px"},
+        {left:"187px",top:"141px"},
+        {left:"100px",top:"185px"}
+    ]
+    //随机函数
+    function randFn(max,min){
+        return parseInt(Math.random()*(max-min)+min)
+    }
+    //计算得分
+    function score(obj){
+        var num = parseInt(scoreBox.innerHTML);
+        if(obj.type == "h"){//判断为灰太狼 +10分
+            num += 10;
+        }else{
+            num -= 10;//小灰灰-10分
+        }
+        scoreBox.innerHTML = num;
+    }
+
+    //进度条部分
+    function progressFn(){
+        if(isPlay){
+            var percent = progressBar.offsetWidth;
+            var progressTimer = setInterval(function(){
+                percent --;
+                if(percent <= 0){
+                    //游戏结束
+                    clearInterval(progressTimer);
+                    clearInterval(createWolfTimer);
+                    gameIsOver();
+                }
+                progressBar.style.width = percent +"px";
+            },500)
+        }
+    }
+    progressFn();
+    //创建狼
+    function createWolf(){
+        var wolf = document.createElement('img');
+        wolf.type = randFn(100,0) > 70 ? "x":"h";//随机小灰灰和灰太狼出现的几率
+        wolf.index = 0;//初始图片的小标
+        wolf.src = "锅打灰太狼img/"+wolf.type+wolf.index+".png";//根据随机的结果，确定显示的图片，默认显示第一张
+        var wolfs = wolfBox.children;//获取所有的狼
+        var bol = true;//是否出现多之狼
+        while(bol){
+            var randPos = randFn(0,posArr.length);//从九个洞里随机出一个位置
+            for (var i=0;i<wolfs.length;i++) {
+                if(wolfs[i].offsetLeft == parseInt(posArr[randPos].left)){//当新随机出来的位置跟上一个出现重复，重新随机
+                    break;
+                }
+            }
+            if(i == wolfs.length){
+                bol = false;
+            }
+        }
+        wolf.style.left = posArr[randPos].left;
+        wolf.style.top = posArr[randPos].top;
+        wolfBox.appendChild(wolf);
+        return wolf;
+    }
+    //击打狼
+    function beatWolf(wolf){
+        wolf.beat = true;//默认是第一次打击
+        wolf.onclick = function(){
+            if(wolf.beat == false){
+                return;
+            }
+            wolf.beat = false;//当点击完成之后状态为不计分
+            score(wolf);
+            wolf.index = 5;
+            clearInterval(wolf.appearTimer);
+            clearInterval(wolf.disappearTimer);
+            wolf.beatTimer = setInterval(function(){
+                wolf.index++;
+                console.log(wolf.index);
+                if(wolf.index >= 9){
+                    clearInterval(wolf.beatTimer);
+                    wolfBox.removeChild(wolf);
+                }
+                wolf.src = "锅打灰太狼img/"+wolf.type+wolf.index+".png";
+            },100)
+        }
+    }
+    //开始游戏
+    function gameStart(){
+        isPlay = true;
+        menu.style.display = "none";
+        progressFn();
+        createWolfTimer = setInterval(function(){
+            var wolf = createWolf();
+            //狼出现
+            wolf.appearTimer = setInterval(function(){
+                wolf.index++;
+                if(wolf.index >= 5){//当图片完全显示出来还没打到时，清除向上的定时器，开启向下的定时器
+                    clearInterval(wolf.appearTimer);
+                    wolf.disappear();//开始向下的动画
+                }
+                wolf.src = "锅打灰太狼img/"+wolf.type+wolf.index+".png";
+            },150)
+            //狼消失
+            wolf.disappear = function(){
+                wolf.disappearTimer = setInterval(function(){
+                    wolf.index --;
+                    if(wolf.index <= 0){
+                        clearInterval(wolf.disappearTimer);
+                        if(wolfBox.children.length > 0){
+                            wolfBox.removeChild(wolf);
+                        }
+                    }
+                    wolf.src = "锅打灰太狼img/"+wolf.type+wolf.index+".png";
+                },100)
+            }
+            beatWolf(wolf);
+        },1500)
+    }
+    //游戏结束
+    function gameIsOver(){
+        gameOver.style.display = "block";
+        wolfBox.innerHTML = "";
+    }
+
+    start.onclick = function(){
+        gameStart();
+    }
+
+</script>
+</html>

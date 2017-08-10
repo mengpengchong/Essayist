@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS数字时钟</title>
+    <style>
+        div{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+</body>
+</html>
+<script>
+    setInterval(function(){
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        content.innerHTML = "<img src='img/数字时钟img/"+parseInt(h/10)+".jpg'>"+ "<img src='img/数字时钟img/"+h%10+".jpg'>"+ "<img src='img/数字时钟img/c.jpg'>" + "<img src='img/数字时钟img/"+parseInt(m/10)+".jpg'>" +  "<img src= 'img/数字时钟img/"+m % 10 +".jpg'>" +"<img src='img/数字时钟img/c.jpg'>" + "<img src= 'img/数字时钟img/"+parseInt(s / 10 ) +".jpg'>" + "<img src= 'img/数字时钟img/"+ s % 10 +".jpg'>";
+    },1)
+
+</script>

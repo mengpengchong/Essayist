@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11.循环嵌套</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //第一层for循环控制的是循环多少次
+//    var bool = true;
+//    for(var i = 1; i < 10;i++){
+//        //第二层for循环控制的是每次走多少遍
+//        for(var j = 1; j <= i;j++){
+//            document.write(j + "x" + i + "=" + i * j);
+//            document.write("&nbsp;&nbsp;&nbsp;&nbsp");
+//        }
+//        document.write("<br><br>");
+//    }
+
+            //99乘法表带边框
+    var str = "<table border = 1;>";
+    for(var i = 1;i <= 9;i++){
+        str +="<tr>";
+       for(var j = 1;j <= i;j++){
+           str +="<td>"+i+"x"+j+"="+i*j+"</td>";
+       }
+       str+="</tr>";
+    }
+    str+="</table>";
+    document.getElementsByTagName("body")[0].innerHTML = str;
+</script>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            height:100px;
+            width: 100px;
+            position: absolute;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        p{
+            height:100px;
+            width: 100px;
+            position: absolute;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            line-height: 100px;
+            cursor: pointer;
+            margin: 0;
+        }
+        #div1{
+            background: red;
+        }
+        #div2{
+            background: black;
+            left:300px;
+            top:300px;
+        }
+        #div3{
+            background: black;
+            left:300px;
+            top:500px;
+        }
+        #div4{
+            background: black;
+            left:300px;
+            top:700px;
+        }
+
+    </style>
+</head>
+<body>
+<p id="div1">移动</p>
+<div id="div2">障碍</div>
+<div id="div3">障碍</div>
+<div id="div4">障碍</div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById("div1");
+    var divs = document.getElementsByTagName("div");
+    var div2 = document.getElementById("div2");
+    //碰撞检测
+    div1.onmousedown = function(event){
+        var disX = event.clientX - div1.offsetLeft;
+        var disY = event.clientY - div1.offsetTop;
+        document.onmousemove = function(event){
+            var event = event || window.event;
+            div1.style.left = event.clientX - disX  + "px";
+            div1.style.top = event.clientY - disY + "px";
+            if(collision(div1,div2)){
+                div2.style.background = "red";
+            }else{
+                div2.style.background = "black";
+            }
+
+            //碰撞检测函数调用
+            for(var i = 0; i < divs.length;i++){
+                if(collision(div1,divs[i])){
+                    divs[i].style.background = "green";
+                }else{
+                    divs[i].style.background = "black";
+                }
+            }
+
+
+        };
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        };
+        return false;
+    };
+
+
+    //碰撞检测函数
+    function collision(obj1, obj2){
+        var l1 = obj1.offsetLeft;
+        var r1 = l1 + obj1.offsetWidth;
+        var t1 = obj1.offsetTop;
+        var b1 = t1 + obj1.offsetHeight;
+
+        var l2 = obj2.offsetLeft;
+        var r2 = l2 + obj2.offsetWidth;
+        var t2 = obj2.offsetTop;
+        var b2 = t2 + obj2.offsetHeight;
+        var bol = true; //假设碰到了
+        if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2) {
+            bol = false
+        }else{
+            bol = true;
+        }
+        return bol;
+    }
+
+
+</script>

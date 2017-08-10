@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小女孩</title>
+    <style>
+        div{
+            height:250px;
+            width:250px;
+        }
+        img:nth-child(1){
+            display: block;
+        }
+        input{
+            margin: 20px 0;
+        }
+        input:nth-child(2){
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <img src="小女孩img/1.jpg" alt="">
+    </div>
+    <input type="button" value="左" id="left">
+    <input type="button" value="右" id="right">
+    <input type="button" value="开始" id="begin">
+    <input type="button" value="结束" id="end">
+</body>
+</html>
+<script>
+    var begin = document.getElementById("begin");
+    var end = document.getElementById("end");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var timer = null;
+
+    function randNum(min,max){
+        return parseInt(Math.random() * (max - min + 1) + min);
+    }
+
+    right.onclick = function(){
+        var arr = [];
+        while(arr.length < 1){
+            var num = randNum(1,8);
+            if(arr.indexOf(num) == -1){
+                arr.push(num);
+            }
+        }
+        var str = "";
+        str = '<img src="小女孩img/'+ arr +'.jpg" >';
+        div.innerHTML = str;
+
+    };
+
+    left.onclick = function(){
+        var arr = [];
+        while(arr.length < 1){
+            var num = randNum(1,8);
+            if(arr.indexOf(num) == -1){
+                arr.push(num)
+            }
+        }
+        var str = "";
+        str = '<img src="小女孩img/'+ arr +'.jpg" >';
+        div.innerHTML = str;
+    };
+    begin.onclick = function(){
+        clearInterval(timer);
+       timer =  setInterval(function(){
+            var arr = [];
+            while(arr.length < 1){
+                var num = randNum(1,8);
+                if(arr.indexOf(num) == -1){
+                    arr.push(num);
+                }
+            }
+            var str = "";
+            str = '<img src="小女孩img/'+ arr +'.jpg" >';
+            div.innerHTML = str;
+        },120)
+    };
+    end.onclick = function(){
+        clearInterval(timer);
+
+    }
+
+
+
+</script>

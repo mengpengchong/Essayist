@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    ul{
+        margin: 0;
+    }
+
+    </style>
+</head>
+<body>
+<div>
+
+</div>
+
+</body>
+</html>
+<script>
+    //cookie 是一个可读可写的字符串    用户计算机最多只能存放300条cookie信息 每条最多存4KB
+    //cookie 每次只能设置一条   cookie 有默认的到期时间 到期时间是持续到浏览器退出
+    //谷歌不支持本地cookie
+    //设置cookie key = value  每条cookie是由 分号和空格隔开
+//    document.cookie = 'username=mengpeng';
+//    document.cookie = 'age=18; expires=' + date;
+//    console.log(document.cookie);
+    //设置cookie过期时间  expires
+//    var date = new Date();
+//    date.setDate(date.getDate() + 1);
+//    console.log(date)
+
+    //移除cookie 只需要将cookie的有效期设置到过去的时间
+
+    //设置cookie
+        //cookie 的封装函数
+        function setCookie(key,value,time){
+            var date = new Date();
+            date.setDate(date.getDate() + time);
+            document.cookie = key + "=" + value + "; expires=" + date;
+        }
+        //移除cookie函数
+        function removeCookie(key,value){
+            setCookie(key,value,-1);
+        }
+//        setCookie("name","蒙芃憧",2);
+//        console.log(document.cookie);
+//        removeCookie("name","蒙芃憧");
+
+    //获取cookie
+    function getCookie(key){
+        var arr1 = document.cookie.split("; ");
+//        console.log(arr1);
+        for(var i = 0;i < arr1.length;i++){
+            var arr2 = arr1[i].split("=");
+            console.log(arr2)
+            if(key == arr2[0]){
+
+                return arr2[1]
+            }
+        }
+    }
+    getCookie()
+
+
+
+
+</script>

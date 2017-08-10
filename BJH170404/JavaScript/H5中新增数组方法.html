@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //H5中新增数组方法
+        //1.forEach() 遍历数组
+            //第一个参数:表示数组的每一项内容
+            //第二个参数:表示数组每一项内容所对应的下标
+            //第三个参数:表示整个原数组
+            var arr = ["haha","hehe","heihei","xixi","hoho"];
+            arr.forEach(function(x,y,z){
+                console.log(x,y,z);
+            })
+
+
+        //2.map() 映射 参数接受一个匿名函数,匿名函数可以传递两个形参
+            //第一个参数:原数组里的每一项.
+            //第二个参数:原数组里每一项内容对应的下标.
+            var arr1 = [1,3,5,7,9];
+            var arr2 = arr1.map(function(x,y){
+                return x + 1;
+
+            });
+                console.log(arr2);
+
+
+        //3.filter() 过滤
+            var arr3 = [100,300,500,30,20,900,1500];
+            function price(num){
+                return num < 300;
+            }
+            console.log(arr3.filter(price));
+
+
+        //4.every() 判断数组中是否存在满足条件的项,只要有一项不满足就是false
+            var arr4 = [1,2,3,8,4,10,12];
+            console.log(arr4.every(function(x){
+                return x < 10;
+            }));
+
+
+        //5.some() 判断数组中是否存在满足条件的项,只要有一项满足就是true
+            var arr5 = [1,2,3,5,10,20];
+            console.log(arr5.some(function(x){
+                return x < 10;
+            }));
+
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height:500px;
+            width:800px;
+
+            margin: 100px auto;
+            position: relative;
+        }
+        p{
+            width:40px;
+            height:40px;
+            background: goldenrod;
+            border-radius: 50%;
+            position: absolute;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+    <p></p>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var div = document.getElementsByTagName("div")[0];
+    var p = document.getElementsByTagName("p")[0];
+    var speedY = 3;
+    var speedX = 5;
+    var timer = null;
+    go();
+    setInterval(go,1460);
+    function go() {
+        timer = setInterval(function(){
+            p.style.left = p.offsetLeft + speedX + "px";
+            if(p.offsetLeft == 500){
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    p.style.top = p.offsetTop + speedX + "px";
+                    if(p.offsetTop == 400){
+                        clearInterval(timer);
+                        timer = setInterval(function(){
+                            p.style.left = p.offsetLeft - speedX + "px";
+                            if(p.offsetLeft == 0){
+                                clearInterval(timer);
+                                timer = setInterval(function(){
+                                    p.style.top = p.offsetTop - speedX + "px";
+                                    if(p.offsetTop == 0){
+                                        clearInterval(timer);
+                                    }
+                                },1)
+                            }
+                        },1)
+                    }
+                },1)
+
+
+            }
+        },1)
+
+    }
+</script>

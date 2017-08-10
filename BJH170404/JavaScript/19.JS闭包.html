@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            height:30px;
+            width:300px;
+            background: pink;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
+<script>
+    //闭包: 指函数b中可以访问到函数a中的局部变量
+    function fn1() {
+        var num = 10;
+        fn2();
+        function fn2(){
+//            console.log(num);
+        }
+    }
+    fn1();
+
+    //可以访问一个函数内局部变量的另一个函数
+        //作用:1.避免变量污染 2.保值
+        //缺点:占用内存,降低性能
+
+    function fna(){
+        var i = 0;
+       return function fnb(){
+            console.log(i);
+            i++;
+        };
+    }
+    var c = fna();
+    var d = fna();
+    c();
+    c();
+    c();
+    d();
+    d();
+    var li = document.getElementsByTagName("li");
+    var div = document.getElementsByTagName("div");
+    //    for(var i= 0; i < li.length;i++){
+    //        li[i].index = i;
+    //        li[i].onclick = function(){
+    //            div[this.index].innerHTML = this.innerHTML;
+    //        }
+    //    }
+    for(var i = 0; i < li.length;i++){
+        (function(index){
+            li[i].onclick = function(){
+                div[index].innerHTML = this.innerHTML;
+//                console.log(this);
+            }
+        })(i);
+    }
+
+
+
+    function fn3(){
+        var i = 0;
+        return function fn4(){
+            console.log(i++)
+        }
+    }
+    var a = fn3();
+    setInterval(a,1000);
+</script>

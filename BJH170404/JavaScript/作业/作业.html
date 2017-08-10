@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+
+        span,p{
+            display: block;
+            height:70px;
+            width:300px;
+            margin: 0;
+            border: 1px solid black;
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            line-height: 70px;
+
+        }
+        span{
+            background: red;
+        }
+        p{
+            background: purple;
+
+        }
+    </style>
+</head>
+<body>
+<p>首行</p>
+<div id="box">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+</div>
+<p>末行</p>
+</body>
+</html>
+<script>
+    var span = document.getElementsByTagName("span");
+    var p = document.getElementsByTagName("p");
+    for(var i = 0;i < p.length;i++){
+        p[i].onmouseover = function(){
+            this.style.background = "yellow";
+            this.style.color = "red";
+        };
+        p[i].onmouseout = function(){
+            this.style.background = "";
+            this.style.color = "red";
+        }
+    }
+
+    for(var k = 0;k < span.length;k++){
+        span[k].onmouseover = function(){
+            this.style.background = "gold";
+            if(this.previousElementSibling){
+                this.previousElementSibling.style.background = "black";
+            }
+            if(this.nextElementSibling){
+                this.nextElementSibling.style.background = "black";
+            }
+        };
+        span[k].onmouseout = function(){
+            this.style.background = "";
+            if(this.previousElementSibling){
+                this.previousElementSibling.style.background = "";
+            }
+            if(this.nextElementSibling){
+                this.nextElementSibling.style.background = "";
+            }
+        }
+    }
+</script>

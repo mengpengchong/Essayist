@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#box{
+			width: 343px;
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#go{
+			width: 236px;
+			position: absolute;
+			top: 150px;
+			left: 80px;
+		}
+		ul{
+			width: 1029px;
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+			position: absolute;
+			left: -343px;
+			top: 423px;
+		}
+		li{
+			float: left;
+		}
+		#bird{
+			width: 40px;
+			height: 26px;
+			position: absolute;
+			left: 125px;
+			top: 10px;
+		}
+		#games{
+			width: 40px;
+			height: 26px;
+			position: absolute;
+			top: 224px;
+			left: 80px;
+			display: none;
+		}
+		#p{
+			width: 343px;
+			height: 480px;
+			/*background: red;*/
+			position: relative;
+			top: -482px;
+			left: 343px;
+		}
+		#pt{
+			width: 62px;
+			background: url('images/up_mod.png');
+			/*background-repeat: repeat;*/
+			height: 100px;
+			position: absolute;
+			top: 0px;
+			left: 343px;
+		}
+		#pb{
+			background: url('images/down_mod.png');
+			position: absolute;
+			height: 100px;
+			width: 62px;
+			bottom: 0px;
+			left: 343px;
+		}
+		#pts{
+			width: 62px;
+			position: absolute;
+			left: 545px;
+			top: 0px;
+			height: 200px;
+			background: url('images/up_mod.png');
+		}
+		#pbs{
+			width: 62px;
+			position: absolute;
+			left: 545px;
+			height: 200px;
+			background: url('images/down_mod.png');
+			bottom: 0px;
+		}
+		#overs{
+			position: absolute;
+			top: 200px;
+			left: 60px;
+			display: none;
+		}
+		#mark{
+			width: 50px;
+			position: absolute;
+			left: 145px;
+			top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/bg.jpg">
+		<div id="go">
+			<img src="images/head.jpg">
+				<div id="bird">
+				<img src="images/bird0.png">
+				<img src="images/bird1.png" style="display: none;">
+			</div>
+		</div>
+		<ul>
+			<li>
+				<img src="images/slider.jpg">
+			</li>
+			<li>
+				<img src="images/slider.jpg">
+			</li>
+			<li>
+				<img src="images/slider.jpg">
+			</li>
+		</ul>
+		<div id="games">
+			<img src="images/down_bird0.png">
+			<img src="images/down_bird1.png" style="display: none;">
+			<img src="images/up_bird0.png" style="display: none;">
+			<img src="images/up_bird1.png" style="display: none;">
+		</div>
+		<div id="pt">
+			<img src="images/up_pipe.png" style="position: absolute;bottom: 0;">
+		</div>
+		<div id="pb">
+			<img src="images/down_pipe.png" style="position: absolute;top: 0;">
+		</div>   
+		<div id="pts">
+			<img src="images/up_pipe.png" style="position: absolute;bottom: 0;">
+		</div>
+		<div id="pbs">
+			<img src="images/down_pipe.png" style="position: absolute;top:0;">
+		</div> 
+		<div id="overs">
+			<img src="images/game_over.jpg">
+		</div>  
+		<div id="mark">
+			<img src="images/0.jpg" id="mark1">
+			<img src="images/0.jpg" id="mark2">
+		</div>      	
+	</div>
+</body>
+<script type="text/javascript">
+	var ul = document.getElementsByTagName('ul')[0];
+	var go = document.getElementById('go');
+	var bird = document.getElementById("bird");
+	var games = document.getElementById('games');
+	var overs = document.getElementById("overs");
+	var mark1 = document.getElementById("mark1");
+	var mark2 = document.getElementById("mark2");
+	var a = 0;
+	var m = 0;
+	setInterval(function(){
+		a++;
+		if (a > 1) {
+			a = 0;
+		}
+		bird.innerHTML = '<img src="images/bird' + a + '.png">'
+	},100)
+	var b = 1;
+	setInterval(function(){
+		if (go.offsetTop <= 135) {
+			b = -b;
+		}
+		if (go.offsetTop >= 150) {
+			b = -b;
+		}
+		go.style.top = go.offsetTop + b + "px";
+	},100)
+	var ooo = null;
+	go.onclick = function(){
+		bird.style.display = "none";
+		go.style.display = "none";
+		games.style.display = "block";
+		//地面轮播
+		var i = -343;
+		ooo = setInterval(function(){
+			i--;
+			ul.style.left = i + "px";
+			if (i < -686) {
+				i = -343;
+			}
+		},10)
+
+
+		//控制小鸟
+		downwards()//自动落下
+		//按下空格或者上键时上升
+		document.onkeydown = function(){
+			clearInterval(up);
+			clearInterval(down);
+			if (event.keyCode == 38 || event.keyCode == 32) {
+				ahead();
+			}
+		}
+
+		//管道执行函数
+		pipeline()
+
+	}
+
+	//向上函数
+	var up = null;
+	function ahead(){
+		var y = 0;
+		var b = 0;
+		up = setInterval(function(){
+			y++
+			if (y > 1) {
+				y = 0;
+			}
+			games.innerHTML = '<img src="images/up_bird' + y + '.png">'
+			b++;
+			if (b > 30) {
+				clearInterval(up);
+				downwards()
+			}
+			var c = 2;
+			games.style.top = games.offsetTop - c + "px";
+		},10)
+	}
+
+	//向下函数
+	var down = null;
+	function downwards(){
+		var l = 0;
+		var c = 2;
+		down = setInterval(function(){
+			l++
+			if (l > 1) {
+				l = 0;
+			}
+			games.innerHTML = '<img src="images/down_bird' + l + '.png">'
+			games.style.top = games.offsetTop + c + "px";
+		},10)
+	}
+
+
+	var box = document.getElementById("box");
+	var pt = document.getElementById("pt");
+	var pb = document.getElementById("pb");
+	var pts = document.getElementById("pts");
+	var pbs = document.getElementById("pbs");
+	//管道函数
+	var ppp = null;
+	function pipeline(){
+		pt.style.height = hei(300,100) + "px";
+		pb.style.height = box.offsetHeight - pt.offsetHeight - 130 +"px";
+		pts.style.height = hei(300,100) + "px";
+		pbs.style.height = box.offsetHeight - pts.offsetHeight - 130 +"px";
+		var k = 1;
+		ppp = setInterval(function(){
+			pt.style.left = pt.offsetLeft - k + "px";
+			if (pt.offsetLeft == -62) {
+				pt.style.left = 343 + "px";
+				pt.style.height = hei(300,100) + "px";
+			}
+			pb.style.left = pb.offsetLeft - k + "px";
+			if (pb.offsetLeft == -62) {
+				pb.style.left = 343 + "px";
+				pb.style.height = box.offsetHeight - pt.offsetHeight - 130 +"px";
+			}
+			pts.style.left = pts.offsetLeft - k + "px";
+			if (pts.offsetLeft == -62) {
+				pts.style.left = 343 + "px";
+				pts.style.height = hei(300,100) + "px";
+			}
+			pbs.style.left = pbs.offsetLeft - k + "px";
+			if (pbs.offsetLeft == -62) {
+				pbs.style.left = 343 + "px";
+				pbs.style.height = box.offsetHeight - pts.offsetHeight - 130 +"px";
+			}
+
+			//判断碰撞
+			if (collision(games,pt) || collision(games,pb) || collision(games,pts) || collision(games,pbs)) {
+				console.log("挂了")
+				over()
+				overs.style.display = "block";
+			}
+
+			//分数
+			if(games.offsetLeft==pt.offsetLeft+pt.offsetWidth||games.offsetLeft==pts.offsetLeft+pts.offsetWidth){
+				m = m + 1;
+				console.log(m)
+				mark2.src= "images/" + m%10 + ".jpg";
+				mark1.src= "images/" + parseInt(m/10) + ".jpg";
+				console.log(mark1,mark2)
+			}
+		},10)
+	}
+	
+	//结束的效果
+	function over(){
+		clearInterval(ppp);
+		clearInterval(ooo);
+		var r = 1;
+		setInterval(function(){
+			games.innerHTML = '<img src="images/down_bird' + 0 + '.png">'
+			games.style.top = games.offsetTop + r + "px";
+		},10)
+		document.onkeydown = function(){
+			clearInterval(up);
+		}
+		overs.onclick = function(){
+			this.style.display = "none";
+			location.reload(true)
+		}
+	}	
+
+	//碰撞检测函数
+	function collision(obj1,obj2){
+		var l1 = obj1.offsetLeft;
+		var r1 = l1 + obj1.offsetWidth;
+		var t1 = obj1.offsetTop;
+		var b1 = t1 + obj1.offsetHeight;
+
+		var l2 = obj2.offsetLeft;
+		var r2 = l2 + obj2.offsetWidth;
+		var t2 = obj2.offsetTop;
+		var b2 = t2 + obj2.offsetHeight;
+
+		var bol = true;//假设碰到了
+
+		if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+			bol = false
+		}else{
+			bol = true;
+		}
+		return bol
+	}
+
+	//随机高度
+	function hei(max,min){
+		return Math.random() * (max - min + 1) + min;
+	}
+</script>
+</html>

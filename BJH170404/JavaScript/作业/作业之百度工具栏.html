@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之百度工具栏</title>
+    <style>
+        a{
+            color: black;
+        }
+        #box{
+            width:90px;
+            height:224px;
+            margin-top: 5px;
+            display: none;
+            border:1px solid;
+        }
+        #box a{
+            display: block;
+            text-decoration: none;
+            padding: 20px 0 20px 5px;
+        }
+        #big{
+            width:35px;
+        }
+    </style>
+</head>
+<body>
+    <div id="big">
+        <a href="###" id="btn">设置</a>
+        <div id="box">
+            <a href="###" id="btn1" class="op">搜索设置</a>
+            <a href="###" id="btn2" class="op">高级搜索</a>
+            <a href="###" id="btn3" class="op">关闭预测</a>
+            <a href="###" id="btn4" class="op">搜索历史</a>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var op = document.getElementsByClassName("op");
+    big.onmouseover = function() {
+        box.style.display = "block";
+        for(var i = 0;i < op.length;i++){
+            op[i].onmouseover = function () {
+                this.style.background = "red";
+            }
+            op[i].onmouseout = function () {
+                this.style.background = "white";
+            }
+        }
+    }
+    big.onmouseout = function(){
+        box.style.display = "none";
+
+    }
+
+
+
+</script>

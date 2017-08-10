@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div">
+        <p id="box"></p>
+        <span id="box1"></span>
+    </div>
+</body>
+</html>
+<script>
+//    DOM 按照层级的形式来划分: 父节点 子节点 兄弟节点
+//    按照节点类型划分: 1.元素节点 2.属性节点 3.文本节点 8.注释节点 9.document节点
+    var div = document.getElementsByTagName("div")[0];
+    console.log(div.nodeType);  //nodeType  是返回节点的类型
+    console.log(div.nodeName);  //nodeName  是返回节点名称
+    console.log(div.nodeValue); //nodeValue 是返回节点的值
+
+    //children 在标准浏览器和IE9下 不会造成空白文本解析,获取到的是真实的子节点
+    //childNodes 会解析空白文本节点
+    //firstChild         在标准和IE9以下会获取到空白文本节点
+    //firstElementChild 标准下获取第一个子节点(IE6,7,8不支持)
+    //lastChild         在标准和IE9以下会获取到空白文本节点
+    //lastElementChild 标准下获取最后一个子节点(IE6,7,8不支持)
+    //previousSibling   在标准和IE9以下会获取到空白文本节点
+    //previousElementSibling 获取指定元素的上一个兄弟节点
+    //nextSibling   在标准和IE9以下会获取到空白文本节点
+    //nextElementSibling 获取指定元素的下一个兄弟节点
+    console.log(div.lastChild);
+    console.log(box.nextElementSibling);
+    //parentNode    获取父节点
+    //offsetParent  获取父节点
+    //getAttribute("属性名")  可以获取到元素的自定义属性
+    //setAttribute("属性名","属性值")  设置元素属性
+    //removeAttribute("属性名")    移除元素属性
+    //document.createElement("标签名") 创建节点
+    //appendChild() 给指定元素追加子节点
+    //insertBefore(插入的元素,插在什么元素之前)
+    //removeChild() 删除节点
+    //cloneNode()   克隆节点 接受一个布尔值作为参数,当参数为true时,会克隆元素的innerHTML,false不会,默认是fslse
+
+
+
+</script>

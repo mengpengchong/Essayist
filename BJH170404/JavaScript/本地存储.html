@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style></style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //本地存储 localStorage 将数据存储到本地硬盘中 没有过期时间,只要不清除,就会一直存储在硬盘中
+
+    //设置 setItem(key,value)
+    localStorage.setItem("name","helloWorld");
+    localStorage.setItem("sex","aa");
+    localStorage.setItem("xx","ss");
+    console.log(localStorage);
+
+    //获取. getItem()
+    console.log(localStorage.getItem("name"));
+
+    //移除 removeItem()
+    localStorage.removeItem("name");
+    console.log(localStorage);
+
+    //删除xx
+    delete  localStorage.xx;
+    console.log(localStorage);
+
+    //clear() 清除所有数据
+    localStorage.clear();
+    console.log(localStorage);
+
+    //临时存储 sessionStorage   将数据临时存储在浏览器本地 有效期持续到浏览器关闭
+    console.log(sessionStorage);
+
+    //设置 setItem()
+    sessionStorage.setItem("name","haha");
+    console.log(sessionStorage);
+
+    //获取 getItem()
+
+    //移除  1.removeItem()
+    //     2.delete sessionStorage.key
+    //     3.sessionStorage.clear()
+</script>

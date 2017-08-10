@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul{
+            width:200px;
+            margin:0;
+            padding: 0;
+            list-style: none;
+        }
+        li{
+            width: 200px;
+            height: 30px;
+            margin-top: 5px;
+            background: green;
+            font-size: 30px;
+            line-height: 30px;
+            text-align: center;
+            color:white;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            top: -205px;
+            left: 210px;
+
+        }
+        #box div{
+            width: 200px;
+            height: 200px;
+            border:1px solid lightgreen;
+            position: absolute;
+            display: none;
+        }
+        div img{
+            width: 200px;
+            height: 200px;
+        }
+        #box div{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<div id="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $("li").hover(function(){
+        $("#box div:eq(" + $(this).index() + ")").toggle()
+    })
+
+</script>

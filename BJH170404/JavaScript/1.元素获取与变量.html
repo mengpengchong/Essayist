@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_1(元素获取与变量)</title>
+</head>
+<body>
+    <div id="box">2</div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+</body>
+</html>
+        <!--JS 全称javaScript 脚本语言-->
+        <!--ECMAscript-->
+        <!--DOM Document Object Model   文档对象模型-->
+        <!--BOM Browser Object Model  浏览器对象模型-->
+
+        <!--JS引入方式-->
+        <!--javaScript-->
+<script>
+
+//    alert("ff") 弹出框 如果弹出的是数字的可以不加引号,其它的都要加引号
+//    console.log() 控制台打印
+
+    console.log("测试");
+//    document.write("<div></div>");
+    document.write("你好");
+
+//    JS对大小写是非常敏感的
+
+    //获取元素
+//    document 指代的是整个html文档,意味着在整个文档中获取元素
+        //通过ID获取
+            //1.document.getElementById()
+    console.log(document.getElementById("box"));
+        //通过class获取
+            //2.document.getElementsByClassName();
+    console.log(document.getElementsByClassName("div1"));
+        //通过标签名获取
+            //3.document.getElementsByTagName();
+    console.log(document.getElementsByTagName("div"));
+document.getElementById("box").style.background = "green";
+
+    //变量是用来存储内容的空间
+    //JS变量只能用var 关键字定义
+    //变量可以保存任何内容
+    var num = 10;
+    console.log(num);
+    var str = "hello word";
+    console.log(str);
+    //JS 命名规范
+        //1.由数字字母下划线及美元符组成,第一个字符不能是数字
+        //2.驼峰命名法
+        //3.避免和系统关键字重复
+        //4.区分大小写
+    //JS5种基本数据类型:
+        //1.number
+        //2.string
+        //3.undefined
+        //4.null
+        //5.boolean
+    //用单引号或者双引号包裹的内容都属于字符串
+
+
+
+</script>

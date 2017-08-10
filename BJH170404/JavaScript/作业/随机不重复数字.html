@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nothing</title>
+    <style>
+
+    </style>
+</head>
+<body>
+</body>
+</html>
+<script>
+    function randNum(min,max){
+        return parseInt(Math.random() * (max - min + 1) + min);
+    }
+    var arr = [];
+    while(arr.length < 10){
+       var num = randNum(10,20);
+       if(arr.indexOf(num) == -1){
+           arr.push(num)
+       }
+    }
+   console.log(arr);
+</script>
+

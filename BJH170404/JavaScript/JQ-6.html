@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //自定义方法 对象 是由属性和方法组成
+    $.extend({
+        hello:function(){
+            alert("hello world")
+        }
+    });
+//    $.hello();
+ //获取 data 数据
+    console.log($("div").data());
+    $("div").data("num",10);
+    $("div").data("span","<span></span>");
+    console.log($("div").data());
+    $("div").append($("div").data("span"))
+
+
+</script>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业for循环</title>
+    <style>
+        div{
+            height:100px;
+            width:100px;
+            background: red;
+            float: left;
+            margin-left: 10px;
+        }
+        .on{
+            border:5px solid goldenrod;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <p id="ad">显示了0个</p>
+    <div id="box"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
+<script>
+    var div = document.getElementsByTagName("div");
+    var ad = document.getElementById("ad");
+    var num = 0;
+    for(var i = 0; i < 6;i++){
+        div[i].onclick = function(){
+            if(this.className == ""){
+                this.className = "on";
+                num+=1;
+            }else if(this.className){
+                this.className = "";
+                num-=1;
+            }
+            ad.innerHTML="显示了" + num + "个";
+        }
+    }
+</script>

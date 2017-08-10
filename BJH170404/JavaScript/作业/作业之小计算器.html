@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之小计算器</title>
+    <style>
+        #box1 {
+            width: 250px;
+            height: 30px;
+            background: deeppink;
+            text-align: center;
+            line-height: 30px;
+        }
+        input{
+            outline:none;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="in1">
+<input type="text" id="in2"><br>
+    <input type="button" value="加" id="cjn">
+    <input type="button" value="减" id="cjn1">
+    <input type="button" value="乘" id="cjn2">
+    <input type="button" value="除" id="cjn3">
+    <input type="button" value="余" id="cjn4">
+<div id="box1"></div>
+</body>
+</html>
+<script>
+    var in1 = document.getElementById("in1");
+    var in2 = document.getElementById("in2");
+    in1.oninput=function(){
+        if(in1.value == "" && in2.value == ""){
+            in1.style.borderColor="red";
+            in2.style.borderColor="red";
+        }else{
+            in1.style.borderColor="";
+            in2.style.borderColor="";
+        }
+    }
+
+    in2.oninput = function(){
+        if(in1.value == "" && in2.value == ""){
+            in1.style.borderColor = "red";
+            in2.style.borderColor = "red";
+        }else{
+            in1.style.borderColor = "";
+            in2.style.borderColor = "";
+        }
+    }
+    cjn.onclick = function () {
+        box1.innerHTML = Number(in1.value) + Number(in2.value);
+     };
+    cjn1.onclick = function(){
+            box1.innerHTML = Number(in1.value) - Number(in2.value);
+    };
+    cjn2.onclick = function(){
+            box1.innerHTML = Number(in1.value) * Number(in2.value);
+    };
+    cjn3.onclick = function(){
+        box1.innerHTML = Number(in1.value) / Number(in2.value);
+    };
+    cjn4.onclick = function(){
+        box1.innerHTML = Number(in1.value) % Number(in2.value);
+    }
+</script>

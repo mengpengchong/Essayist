@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之透明度写轮播</title>
+    <style>
+        .box{
+            width:300px;
+            height:150px;
+            margin: 100px auto;
+            border:1px solid red;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        ul{
+            margin: 0;
+            padding:0;
+            list-style: none;
+            width: 1200px;
+            height:150px;
+        }
+        ul li{
+            width:300px;
+            height:150px;
+            float: left;
+            text-align: center;
+            line-height: 150px;
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            z-index: -10;
+        }
+
+        ul li:nth-child(1){
+            background: red;
+        }
+        ul li:nth-child(2){
+            background: blue;
+        }
+        ul li:nth-child(3){
+            background: cornflowerblue;
+        }
+        ul li:nth-child(4){
+            background: goldenrod;
+        }
+        span {
+            width: 20px;
+            height: 25px;
+            position: absolute;
+            line-height: 25px;
+            background: pink;
+            top: 65px;
+            right:0;
+            text-align: center;
+            border: 1px solid black;
+            z-index: 9999;
+        }
+        .right{
+            left:0;
+        }
+        .box2{
+            position: absolute;
+            bottom: -10px;
+            /*border:1px solid;*/
+            left:115px;
+
+        }
+        .box2 p {
+            height:15px;
+            width:15px;
+            border-radius: 50%;
+            margin-left: 5px;
+            background: mediumpurple;
+            float: left;
+            position: relative;
+            z-index: 69999;
+        }
+        .box2 p:first-child{background: white;}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="box2">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        <span>></span>
+        <span class="right"><</span>
+    </div>
+</body>
+</html>
+<script>
+    var btn = document.getElementsByTagName("span");
+    var li = document.getElementsByTagName("li");
+    var ul = document.getElementsByTagName("ul")[0];
+    var div = document.getElementsByTagName("div")[0];
+    var op = document.getElementsByTagName("p");
+    var num = 0;
+    for(var i = 0;i < li.length;i++){
+        op[i].index = i;
+        op[i].onclick = function(){
+            if(this.index == 0){
+                num = 0;
+            }else if(this.index == 1){
+                num = 1;
+            }else if(this.index == 2){
+                num = 2;
+            }else if(this.index == 3){
+                num = 3;
+            }
+            for(var k = 0 ; k< op.length; k++){
+                op[k].style.background = "mediumpurple";
+                li[num].style.zIndex = "";
+
+            }
+            op[this.index].style.background = "white";
+            li[this.index].style.zIndex = "4" * k;
+
+            console.log(li[num])
+        }
+    }
+
+
+    btn[0].onclick = function(){
+       num++;
+        if(num > 3){
+            num = 0;
+        }
+        for(var i = 0;i < li.length;i++){
+            li[i].style.zIndex = "";
+        }
+        li[num].style.zIndex = "10";
+
+    }
+    btn[1].onclick = function(){
+        num--;
+        if(num < 0){
+            num = 3;
+        }
+        for(var i = 0;i < li.length;i++){
+            li[i].style.zIndex = "";
+        }
+        li[num].style.zIndex = "10";
+
+    }
+</script>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            height:100px;
+            width: 100px;
+            position: absolute;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        #div1{
+            background: red;
+        }
+        #div2{
+            background: blueviolet;
+            left:300px;
+            top:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">移动</div>
+<div id="div2">障碍</div>
+
+</body>
+</html>
+<script>
+    var div1 = document.getElementById("div1");
+    var div2 = document.getElementById("div2");
+    div1.onmousedown = function(event){
+        var disX = event.clientX - div1.offsetLeft;
+        var disY = event.clientY - div1.offsetTop;
+        document.onmousemove = function(event){
+            var event = event || window.event;
+            div1.style.left = event.clientX - disX  + "px";
+            div1.style.top = event.clientY - disY + "px";
+            //获取移动物体上下左右4条边的坐标值
+            var l1 = div1.offsetLeft;
+            var r1 = l1 + div1.offsetWidth;
+            var t1 = div1.offsetTop;
+            var b1 = t1 + div1.offsetHeight;
+
+            //获取障碍物体上下左右4条边的坐标值
+            var l2 = div2.offsetLeft;
+            var r2 = l2 + div2.offsetWidth;
+            var t2 = div2.offsetTop;
+            var b2 = t2 + div2.offsetHeight;
+            if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+                div2.style.background = "blueviolet";
+                div2.innerHTML = "障碍"
+            }else{
+                div2.style.background = "black";
+                div2.innerHTML = "你撞我";
+                if(r1 < l2){
+                    console.log(1)
+                }
+                if( b1 < t2){
+                    console.log(2)
+                }
+                if(l1 > r2){
+                    console.log(3)
+                }
+                if(t1 > b2){
+                    console.log(4)
+                }
+            }
+            //移动物体的右边 < 障碍物的左边
+            //移动物体的下边 < 障碍物的上边
+            //移动物体的左边 > 障碍物的右边
+            //移动物体的上边 > 障碍物的下班
+        };
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        };
+        return false;
+    }
+
+
+</script>

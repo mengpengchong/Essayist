@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业之定时器</title>
+    <style>
+        #content{
+            height:50px;
+            width:400px;
+            border:1px solid;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+       #box{
+            height:50px;
+            width:400px;
+            background: green;
+            position: absolute;
+            line-height: 50px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点我">
+    <div id="content">
+        <div id="box"></div>
+    </div>
+</body>
+</html>
+<script>
+    var btn = document.getElementsByTagName("input")[0];
+    var timer = null;
+    num = 400;
+    console.log(box.offsetLeft);
+    btn.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            num--;
+            if(num <= 300){
+                box.style.background = "yellow";
+            }
+            if(num <= 150){
+                box.style.background = "red";
+            }
+            if(num == 0){
+              box.innerHTML = "Over";
+            }
+            box.style.width = num + "px";
+        },10)
+    }
+
+
+</script>

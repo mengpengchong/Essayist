@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: relative;
+            margin: 0 auto;
+        }
+        #list li{
+            width: 200px;
+            position: absolute;
+            font-size: 50px;
+            background: #ccc;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+<ul id="list"></ul>
+</body>
+<script>
+    function waterFall(){
+        var list = document.getElementById('list');
+        var width = 200;
+        var margin = 10;
+        var topArr = [];//存放每一列高度的数组
+        var heightArr = [];//保存每一个LI的高度
+
+        //随机数函数
+        function randFn(max,min){
+            return parseInt(Math.random()*(max - min + 1)+min)
+        }
+        //通过bol值来判断是调整li的位置还是新创建li
+        function createFall(bol){
+            //获取浏览器窗口的宽度
+            var totalWidth = document.documentElement.clientWidth;
+            var cols = parseInt(totalWidth/(width + margin));//总宽度/每列的宽度 = 列数
+            console.log(cols);
+
+            //获取所有的li
+            var lis = document.getElementsByTagName('li');
+            //列数*每一列的宽度 = ul 的宽度
+            list.style.width = cols * (width + margin) + "px";
+            // 把存放每一列高度的数组的每一项初始化为0
+            for (var i = 0; i < cols; i++) {
+                topArr[i] = 0;
+            }
+            //创建Li
+            function createLi(index){
+                var li = lis[index]||document.createElement("li");
+                var minIndex = 0;//保存topArr最小高度的下标
+                var height = heightArr[index]||randFn(100,300);//随机li的高度
+                li.style.height = height + "px";
+                li.innerHTML = index;
+
+                minIndex = topArr.indexOf(Math.min.apply(null,topArr));//最小高度的下标
+
+                //确定li的top值
+                li.style.top = topArr[minIndex]+ "px";
+                //确定li的left值
+                li.style.left = minIndex * (width + margin) + "px";
+
+                topArr[minIndex] += (height + margin);
+
+                if(bol){//页面刚加载进来，需要创建LI
+                    list.appendChild(li);
+                    heightArr.push(height);
+                }
+            }
+            for (var i = 0; i < 100; i++) {
+                createLi(i)
+            }
+        }
+        window.onload = function(){
+            //当页面刚加载进来时，布尔值为true，会有新的li加载进来
+            createFall(true)
+        }
+        window.onresize = function(){
+            //当页面只是调整大小时，不需要添加新的li,那就把布尔值设为false
+            createFall(false)
+        }
+
+    }
+    waterFall()
+
+
+
+
+
+
+</script>
+</html>
